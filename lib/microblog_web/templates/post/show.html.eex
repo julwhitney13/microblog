@@ -1,0 +1,38 @@
+<h2>Show Post</h2>
+
+<ul>
+
+  <li>
+    <strong>Title:</strong>
+    <%= @post.title %>
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @post.description %>
+  </li>
+
+  <li>
+    <strong>Content:</strong>
+    <%= @post.content %>
+  </li>
+
+  <li>
+    <strong>Authorid:</strong>
+    <%= @post.authorId %>
+  </li>
+
+  <li>
+    <strong>Hashtags:</strong>
+    <%= @post.hashtags %>
+  </li>
+
+  <li>
+    <strong>Mentions:</strong>
+    <%= @post.mentions %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: post_path(@conn, :edit, @post) %></span>
+<span><%= link "Back", to: post_path(@conn, :index) %></span>
