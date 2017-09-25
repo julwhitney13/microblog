@@ -16,7 +16,7 @@ use Mix.Config
 config :microblog, MicroblogWeb.Endpoint,
   load_from_system_env: true,
   url: [host: "microblog.sorryiateallyourpancakes.com", port: 8000],
-  server:true,
+  server: true,
   cache_static_manifest: "priv/static/cache_manifest.json"
 
 # Do not print debug messages in production
