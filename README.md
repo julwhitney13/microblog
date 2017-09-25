@@ -1,3 +1,15 @@
+# Kim Whitney's Microblog
+
+### Github Repo:
+https://github.com/kimception/microblog
+
+### Deployed Application
+http://www.microblog.sorryiateallyourpancakes.com/
+
+### Deployed Application - Posts
+http://www.microblog.sorryiateallyourpancakes.com/posts
+
+
 # Microblog
 
 To start your Phoenix server:
