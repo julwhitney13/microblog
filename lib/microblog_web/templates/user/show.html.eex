@@ -20,6 +20,7 @@
             </div>
         </div>
         <div class="col-md-6">
+        <%= Microblog.Repo.preload(@user, :posts) %>
         <%= if @user.posts do %>
             <%= for post <- @user.posts do %>
                 <div class="card text-center mb-3">
