@@ -6,7 +6,6 @@
       <th>Title</th>
       <th>Description</th>
       <th>Content</th>
-      <th>Authorid</th>
       <th>Hashtags</th>
       <th>Mentions</th>
 
@@ -19,7 +18,6 @@
       <td><%= post.title %></td>
       <td><%= post.description %></td>
       <td><%= post.content %></td>
-      <td><%= post.authorId %></td>
       <td><%= post.hashtags %></td>
       <td><%= post.mentions %></td>
 

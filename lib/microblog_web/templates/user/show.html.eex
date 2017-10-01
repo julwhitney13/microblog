@@ -18,30 +18,21 @@
             </div>
         </div>
         <div class="col-md-6">
-            <div class="card text-center mb-3">
-                <div class="card-body">
-                    <h4 class="card-title">College Student Study Tips</h4>
-                    <p class="card-subtitle text-muted mb-3">A bunch of study tips</p>
-                    <a href="#" class="btn btn-info">Read More</a>
+        <%= if @user.posts do %>
+            <%= for post <- @user.posts do %>
+                <div class="card text-center mb-3">
+                    <div class="card-body">
+                        <h4 class="card-title"><%= post.title %></h4>
+                        <p class="card-subtitle text-muted mb-3"><%= post.description %></p>
+                        <a href="#" class="btn btn-info">Read More</a>
+                    </div>
+                    <div class="card-footer"><small class="text-muted">Posted <%= post.inserted_at %></small></div>
                 </div>
-                <div class="card-footer"><small class="text-muted">Posted March 25th, 2016</small></div>
-            </div>
-            <div class="card text-center mb-3">
-                <div class="card-body">
-                    <h4 class="card-title">Why We Need More Women in Tech</h4>
-                    <p class="card-subtitle text-muted mb-3">And a sub description explaining what this post is about.</p>
-                    <a href="#" class="btn btn-info">Read More</a>
-                </div>
-                <div class="card-footer"><small class="text-muted">Posted February 22nd, 2016</small></div>
-            </div>
-            <div class="card text-center mb-3">
-                <div class="card-body">
-                    <h4 class="card-title">Test Article</h4>
-                    <p class="card-subtitle text-muted mb-3">Testing how writing an article works!!</p>
-                    <a href="#" class="btn btn-info">Read More</a>
-                </div>
-                <div class="card-footer"><small class="text-muted">Posted January 1st, 2016 | Edited March 8th, 2017</small></div>
-            </div>
+            <% end %>
+        <% else %>
+            <h4> No Posts Yet</h4>
+        <% end %>
+
         </div>
     </div>
 </div>
