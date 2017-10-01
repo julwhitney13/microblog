@@ -1,38 +1,8 @@
-<h2>Show User</h2>
-
-<ul>
-
-  <li>
-    <strong>Firstname:</strong>
-    <%= @user.firstname %>
-  </li>
-
-  <li>
-    <strong>Lastname:</strong>
-    <%= @user.lastname %>
-  </li>
-
-  <li>
-    <strong>Username:</strong>
-    <%= @user.username %>
-  </li>
-
-  <li>
-    <strong>Email:</strong>
-    <%= @user.email %>
-  </li>
-
-</ul>
-
-<span><%= link "Edit", to: user_path(@conn, :edit, @user) %></span>
-<span><%= link "Back", to: user_path(@conn, :index) %></span>
-
-
 <div class="container my-5">
     <div class="row">
         <div class="col-md-6">
             <div class="card">
-                <img class="img-fluid img-rounded" src="resources/picome.jpg" alt="me">
+                <img class="img-fluid img-rounded" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Blank_woman_placeholder.svg/2000px-Blank_woman_placeholder.svg.png" alt="me">
                 <div class="card-body">
                     <div class="row">
                         <div class=col-md-6><h4 class="card-title"><%= @user.firstname %></h4></div>

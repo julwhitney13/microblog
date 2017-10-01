@@ -53,6 +53,7 @@
                         <input type="text" placeholder="email" class="form-control" name="email">
                         <input type="submit" value="Log in" class="btn btn-info">
                         <% end %>
+                        <span><%= link "Create Account", to: user_path(@conn, :new), class: "btn-primary" %></span>
                     <% end %>
 
                 </div>
