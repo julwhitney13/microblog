@@ -7,12 +7,6 @@
       <th>Lastname</th>
       <th>Username</th>
       <th>Email</th>
-      <th>Verified</th>
-      <th>Followers</th>
-      <th>Following</th>
-      <th>Posts</th>
-      <th>Description</th>
-
       <th></th>
     </tr>
   </thead>
@@ -23,12 +17,6 @@
       <td><%= user.lastname %></td>
       <td><%= user.username %></td>
       <td><%= user.email %></td>
-      <td><%= user.verified %></td>
-      <td><%= user.followers %></td>
-      <td><%= user.following %></td>
-      <td><%= user.posts %></td>
-      <td><%= user.description %></td>
-
       <td class="text-right">
         <span><%= link "Show", to: user_path(@conn, :show, user), class: "btn btn-default btn-xs" %></span>
         <span><%= link "Edit", to: user_path(@conn, :edit, user), class: "btn btn-default btn-xs" %></span>

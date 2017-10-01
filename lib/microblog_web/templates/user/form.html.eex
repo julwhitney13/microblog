@@ -30,36 +30,6 @@
   </div>
 
   <div class="form-group">
-    <%= label f, :verified, class: "control-label" %>
-    <%= checkbox f, :verified, class: "checkbox" %>
-    <%= error_tag f, :verified %>
-  </div>
-
-  <div class="form-group">
-    <%= label f, :followers, class: "control-label" %>
-    <%= number_input f, :followers, class: "form-control" %>
-    <%= error_tag f, :followers %>
-  </div>
-
-  <div class="form-group">
-    <%= label f, :following, class: "control-label" %>
-    <%= number_input f, :following, class: "form-control" %>
-    <%= error_tag f, :following %>
-  </div>
-
-  <div class="form-group">
-    <%= label f, :posts, class: "control-label" %>
-    <%= number_input f, :posts, class: "form-control" %>
-    <%= error_tag f, :posts %>
-  </div>
-
-  <div class="form-group">
-    <%= label f, :description, class: "control-label" %>
-    <%= textarea f, :description, class: "form-control" %>
-    <%= error_tag f, :description %>
-  </div>
-
-  <div class="form-group">
     <%= submit "Submit", class: "btn btn-primary" %>
   </div>
 <% end %>

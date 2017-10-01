@@ -22,31 +22,6 @@
     <%= @user.email %>
   </li>
 
-  <li>
-    <strong>Verified:</strong>
-    <%= @user.verified %>
-  </li>
-
-  <li>
-    <strong>Followers:</strong>
-    <%= @user.followers %>
-  </li>
-
-  <li>
-    <strong>Following:</strong>
-    <%= @user.following %>
-  </li>
-
-  <li>
-    <strong>Posts:</strong>
-    <%= @user.posts %>
-  </li>
-
-  <li>
-    <strong>Description:</strong>
-    <%= @user.description %>
-  </li>
-
 </ul>
 
 <span><%= link "Edit", to: user_path(@conn, :edit, @user) %></span>
