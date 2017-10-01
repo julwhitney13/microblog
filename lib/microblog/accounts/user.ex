@@ -9,7 +9,7 @@ defmodule Microblog.Accounts.User do
     field :firstname, :string
     field :lastname, :string
     field :username, :string
-    field :description, :text
+    field :description, :varchar
 
     has_many :posts, Microblog.Messages.Post
     timestamps()
