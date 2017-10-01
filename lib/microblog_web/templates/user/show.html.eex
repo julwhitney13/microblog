@@ -10,7 +10,7 @@
                     </div>
                     <p class="card-text">
                         <%= @user.description %><br>
-                        <%= if @current_user.id == @user.id do %>
+                        <%= if @current_user and @current_user.id == @user.id do %>
                             <span><%= link "Edit Profile", to: user_path(@conn, :edit, @user), class: "btn btn-info" %></span>
                         <% end %>
                     </p>
