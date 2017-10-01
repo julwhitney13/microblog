@@ -12,6 +12,7 @@ defmodule Microblog.Messages.Post do
     field :mentions, {:array, :integer}
     field :title, :string
 
+    belongs_to :user, Microblog.Accounts.User
     timestamps()
   end
 
