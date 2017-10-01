@@ -40,7 +40,7 @@
                     </div>
                     <p class="card-text">
                         <%= if @current_user.user_id == @user.user_id do %>
-                            <span><%= link "Edit Profile", to: user_path(@conn, :edit, @user) class:"btn btn-info" %></span>
+                            <span><%= link "Edit Profile", to: user_path(@conn, :edit, @user), class: "btn btn-info" %></span>
                         <% end %>
                     </p>
                 </div>
