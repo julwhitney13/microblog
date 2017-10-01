@@ -26,3 +26,58 @@
 
 <span><%= link "Edit", to: user_path(@conn, :edit, @user) %></span>
 <span><%= link "Back", to: user_path(@conn, :index) %></span>
+
+
+<div class="container my-5">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <img class="img-fluid img-rounded" src="resources/picome.jpg" alt="me">
+                <div class="card-body">
+                    <div class="row">
+                        <div class=col-md-6><h4 class="card-title"><%= @user.firstname %></h4></div>
+                        <div class=col-md-6><h4 class="card-title"><%= @user.username %></h4></div>
+                    </div>
+                    <p class="card-text">
+                        <%= if @current_user.user_id == @user.user_id do %>
+                            <span><%= link "Edit Profile", to: user_path(@conn, :edit, @user) class:"btn btn-info" %></span>
+                        <% end %>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card text-center mb-3">
+                <div class="card-body">
+                    <h4 class="card-title">College Student Study Tips</h4>
+                    <p class="card-subtitle text-muted mb-3">A bunch of study tips</p>
+                    <a href="#" class="btn btn-info">Read More</a>
+                </div>
+                <div class="card-footer"><small class="text-muted">Posted March 25th, 2016</small></div>
+            </div>
+            <div class="card text-center mb-3">
+                <div class="card-body">
+                    <h4 class="card-title">Why We Need More Women in Tech</h4>
+                    <p class="card-subtitle text-muted mb-3">And a sub description explaining what this post is about.</p>
+                    <a href="#" class="btn btn-info">Read More</a>
+                </div>
+                <div class="card-footer"><small class="text-muted">Posted February 22nd, 2016</small></div>
+            </div>
+            <div class="card text-center mb-3">
+                <div class="card-body">
+                    <h4 class="card-title">Test Article</h4>
+                    <p class="card-subtitle text-muted mb-3">Testing how writing an article works!!</p>
+                    <a href="#" class="btn btn-info">Read More</a>
+                </div>
+                <div class="card-footer"><small class="text-muted">Posted January 1st, 2016 | Edited March 8th, 2017</small></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
