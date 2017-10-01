@@ -1,5 +1,5 @@
 <div class="container my-5">
-    <h1 class="mb-3">Followers</h1>
+    <h1 class="mb-3">Users</h1>
     <div class="row">
         <div class="card-columns">
             <%= for user <- @users do %>
@@ -7,7 +7,7 @@
                     <img class="card-img-top img-fluid" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Blank_woman_placeholder.svg/2000px-Blank_woman_placeholder.svg.png" alt="bw">
                         <div class="card-body">
                             <h4 class="card-title"><%= user.firstname %> <%= user.lastname%></h4>
-                            <p class="card-subtitle mb-1">@<%= link(user.username, to: user_path(@conn, :show, user)) %></p>
+                            <p class="card-subtitle mb-1"><%= link("@" <> user.username, to: user_path(@conn, :show, user)) %></p>
                         </div>
                 </div>
             <% end %>
