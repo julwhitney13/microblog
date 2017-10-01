@@ -18,7 +18,7 @@ defmodule Microblog.Accounts do
 
   """
   def list_users do
-    Repo.all(User)
+    Repo.all(User, preload: :posts)
   end
 
   @doc """
