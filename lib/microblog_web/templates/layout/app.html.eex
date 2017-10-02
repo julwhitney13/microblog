@@ -28,6 +28,9 @@
                         <li class="nav-item active">
                             <%= link "Posts", to: post_path(@conn, :index), class: "nav-link" %>
                         </li>
+                        <li class="nav-item active">
+                            <%= link "Users", to: user_path(@conn, :index), class: "nav-link" %>
+                        </li>
                     </ul>
 
 
@@ -45,7 +48,7 @@
 
                     <%= if @current_user do %>
                     <span class="text-dark">
-                        <%= @current_user.email %> |
+                        <%= link @current_user.username, to: user_path(@conn, :show, @current_user) %> |
                         <%= link("logout", to: session_path(@conn, :logout), method: :delete) %>
                     </span>
                     <% else %>

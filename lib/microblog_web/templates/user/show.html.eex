@@ -32,10 +32,8 @@
                     </div>
                 <% end %>
             <% else %>
-                <h4> No Posts Yet</h4>
+                <h4 class="text-center">No Posts Yet</h4>
             <% end %>
-
-
         </div>
     </div>
 </div>
