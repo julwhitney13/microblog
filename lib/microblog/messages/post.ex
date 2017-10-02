@@ -8,7 +8,6 @@ defmodule Microblog.Messages.Post do
     field :content, :string
     field :description, :string
     field :hashtags, {:array, :string}
-    field :mentions, {:array, :integer}
     field :title, :string
 
     belongs_to :user, Microblog.Accounts.User
@@ -18,7 +17,7 @@ defmodule Microblog.Messages.Post do
   @doc false
   def changeset(%Post{} = post, attrs) do
     post
-    |> cast(attrs, [:title, :description, :content, :hashtags, :mentions, :user_id])
-    |> validate_required([:title, :description, :content, :hashtags, :mentions])
+    |> cast(attrs, [:title, :description, :content, :hashtags, :user_id])
+    |> validate_required([:title, :description, :content, :hashtags])
   end
 end

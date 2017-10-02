@@ -7,7 +7,6 @@
       <th>Description</th>
       <th>Content</th>
       <th>Hashtags</th>
-      <th>Mentions</th>
 
       <th></th>
     </tr>
@@ -19,7 +18,6 @@
       <td><%= post.description %></td>
       <td><%= post.content %></td>
       <td><%= post.hashtags %></td>
-      <td><%= post.mentions %></td>
 
       <td class="text-right">
         <span><%= link "Show", to: post_path(@conn, :show, post), class: "btn btn-default btn-xs" %></span>
