@@ -154,18 +154,7 @@ defmodule Microblog.Accounts do
   end
 
   def is_following?(actor_id, receiver_id) do
-    #   r = %Relationship{actor_id: actor_id, receiver_id: receiver_id}
-    #   Repo.get(Relationship, r) == nil
 
-    #   r = Repo.one(
-    #     from relationship in Relationship,
-    #     where: [actor_id: ^actor_id, receiver_id: ^receiver_id]
-    #     )
-    #   if !r do
-    #       false
-    #   else
-    #       length(r) > 0
-    #   end
       !!Repo.get_by(Relationship, actor_id: actor_id, receiver_id: receiver_id)
   end
   @doc """

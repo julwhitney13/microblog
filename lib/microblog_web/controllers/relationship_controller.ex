@@ -67,7 +67,7 @@ defmodule MicroblogWeb.RelationshipController do
   # end
 
   def delete(conn, %{"relationship" => relationship_params}) do
-    relationship = Accounts.get_relationship(relationship_params.actor_id, relationship_params.receiver_id)
+    relationship = Accounts.get_relationship(relationship_params["actor_id"], relationship_params["receiver_id"])
     {:ok, _relationship} = Accounts.delete_relationship(relationship)
 
     conn
