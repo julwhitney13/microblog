@@ -12,7 +12,7 @@ defmodule MicroblogWeb.Helpers do
     #     u.posts
     # end
     #
-    # def make_relationship_params(actor_id, receiver_id) do
+    # defmodule make_relationship_params(actor_id, receiver_id) do
     #     defstruct [actor_id: actor_id, receiver_id: receiver_id]
     # end
 
