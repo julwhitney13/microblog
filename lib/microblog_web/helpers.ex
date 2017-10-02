@@ -18,10 +18,12 @@ defmodule MicroblogWeb.Helpers do
     # end
 
     def get_relationship(actor_id, receiver_id) do
-        Microblog.Repo.get(
-          from r in Relationship,
-          where: r.actor_id == ^actor_id and r.receiver_id == ^receiver_id
-         )
+        # Microblog.Repo.get(Relationship,
+        #   from r in Relationship,
+        #   where: r.actor_id == ^actor_id and r.receiver_id == ^receiver_id
+        #  )
+
+         Microblog.Repo.get_by(Relationship, [actor_id: actor_id, receiver_id: receiver_id])
     end
 
     def is_following?(actor_id, receiver_id) do
