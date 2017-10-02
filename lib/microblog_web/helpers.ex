@@ -27,7 +27,8 @@ defmodule MicroblogWeb.Helpers do
     def get_relationship(actor_id, receiver_id) do
         Microblog.Repo.all(
           from r in "relationships",
-          where: r.actor_id == ^actor_id and r.receiver_id == ^receiver_id
+          where: r.actor_id == ^actor_id and r.receiver_id == ^receiver_id,
+          select: r
          )
     end
 end
