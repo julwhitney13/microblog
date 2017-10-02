@@ -20,12 +20,12 @@ defmodule MicroblogWeb.Router do
     pipe_through :browser # Use the default browser stack
     resources "/users", UserController
     resources "/posts", PostController
-    resources "/relationships", RelationshipController, except: [:show, :new, :index, :update, :edit]
+    delete "/relationships", RelationshipController, :delete
+    resources "/relationships", RelationshipController, except: [:show, :new, :index, :update, :edit, :delete]
 
     get "/", PageController, :index
 
-    get "/relationships", RelationshipController, :create
-    delete "/relationships", RelationshipController, :delete
+
     post "/sessions", SessionController, :login
     delete "/sessions", SessionController, :logout
   end
