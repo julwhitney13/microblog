@@ -10,11 +10,14 @@
                             <p class="card-subtitle mb-1 center-text"><%= link("@" <> user.username, to: user_path(@conn, :show, user)) %></p>
                         </div>
                         <div class="border-info card-footer center-text">
+                            <%= if @current_user do %>
                             <%= if is_following?(@current_user.id, user.id) do %>
                                 <%= link("unfollow", to: relationship_path(@conn, :new), class: "btn btn-info") %>
+                            <% end %>
                             <% else %>
                                 <%= link("follow", to: relationship_path(@conn, :new), class: "btn btn-info") %>
                             <% end %>
+
                         </div>
                 </div>
             <% end %>
