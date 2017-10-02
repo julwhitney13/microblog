@@ -139,7 +139,7 @@ defmodule Microblog.Accounts do
 
   def get_relationship(actor_id, receiver_id) do
       Repo.one(
-        from r in "relationships",
+        from r in Relationship, 
         where: r.actor_id == ^actor_id and r.receiver_id == ^receiver_id
        )
   end
