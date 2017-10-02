@@ -31,12 +31,11 @@ defmodule MicroblogWeb.Helpers do
         # Repo.get(Relationship, r) == nil
 
         re = get_relationship(actor_id, receiver_id)
-        length(re) > 0
-        # if lengre do
-        #     true
-        # else
-        #     false
-        # end
+        if !re do
+            false
+        else
+            length(re) > 0
+        end
     end
     #
     # def get_relationship(actor_id, receiver_id) do
