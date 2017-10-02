@@ -42,7 +42,8 @@ defmodule Microblog.Mixfile do
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
       {:decimal, "~> 1.0"},
-      {:distillery, "~> 1.4"}
+      {:distillery, "~> 1.4"},
+      {:navigation_history, "~> 0.0"},
     ]
   end
 
