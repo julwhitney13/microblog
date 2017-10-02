@@ -18,7 +18,7 @@ defmodule MicroblogWeb.Helpers do
     # end
 
     def get_relationship(actor_id, receiver_id) do
-        Microblog.Repo.one(
+        Microblog.Repo.get(
           from r in Relationship,
           where: r.actor_id == ^actor_id and r.receiver_id == ^receiver_id
          )
