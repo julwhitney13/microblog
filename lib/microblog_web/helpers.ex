@@ -16,11 +16,15 @@ defmodule MicroblogWeb.Helpers do
         # r = %Relationship{actor_id: actor_id, receiver_id: receiver_id}
         # Repo.get(Relationship, r) == nil
 
-        re = Microblog.Repo.all(
+        re = get_relationship(actor_id, receiver_id)
+        length(re) > 0
+    end
+
+    def get_relationship(actor_id, receiver_id) do
+        Microblog.Repo.all(
           from r in "relationships",
           where: r.actor_id == ^actor_id and r.receiver_id == ^receiver_id,
           select: r.id
-          )
-        length(re) > 0
+         )
     end
 end
