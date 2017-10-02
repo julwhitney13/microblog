@@ -163,8 +163,9 @@ defmodule Microblog.Accounts do
         )
       if !r do
           false
+      else
+          length(r) > 0
       end
-      length(r) > 0
   end
   @doc """
   Creates a relationship.
