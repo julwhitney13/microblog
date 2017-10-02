@@ -49,7 +49,7 @@ defmodule MicroblogWeb.RelationshipController do
   #   end
   # end
 
-  def get_or_create(conn, %{"id" => id}) do
+  def get_or_create(conn, %{"id" => id} \\ nil) do
       case Accounts.get_or_create_relationship(id) do
         {:ok, relationship} ->
           conn
