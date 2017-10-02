@@ -157,15 +157,18 @@ defmodule Microblog.Accounts do
     #   r = %Relationship{actor_id: actor_id, receiver_id: receiver_id}
     #   Repo.get(Relationship, r) == nil
 
-      r = Repo.one(
-        from relationship in Relationship,
-        where: [actor_id: ^actor_id, receiver_id: ^receiver_id]
-        )
-      if !r do
-          false
-      else
-          length(r) > 0
-      end
+    #   r = Repo.one(
+    #     from relationship in Relationship,
+    #     where: [actor_id: ^actor_id, receiver_id: ^receiver_id]
+    #     )
+    #   if !r do
+    #       false
+    #   else
+    #       length(r) > 0
+    #   end
+      user = get_user!(actor_id)
+      u = user |> Microblog.Repo.preload(:relationships)
+      Enum.any?(u.relationships, fn(x) -> (x.actor_id == actor_id) and (x.receiver_id == receiver_id) end)
   end
   @doc """
   Creates a relationship.
