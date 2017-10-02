@@ -21,7 +21,7 @@ defmodule MicroblogWeb.RelationshipController do
       {:ok, relationship} ->
         conn
         |> put_flash(:info, "User followed successfully.")
-        |> redirect(to: NavigationHistory.last_path(conn, default: user_path(conn, :show, relationship.receiver_id)))
+        |> redirect(to: NavigationHistory.last_path(conn, default: user_path(conn, :index)))
       {:error, %Ecto.Changeset{} = changeset} ->
         conn
         |> put_flash(:error, "Error unfollowing user.")
