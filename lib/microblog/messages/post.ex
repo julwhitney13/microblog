@@ -18,7 +18,7 @@ defmodule Microblog.Messages.Post do
   @doc false
   def changeset(%Post{} = post, attrs) do
     post
-    |> cast(attrs, [:title, :description, :content, :hashtags, :mentions])
+    |> cast(attrs, [:title, :description, :content, :hashtags, :mentions, :user_id])
     |> validate_required([:title, :description, :content, :hashtags, :mentions])
   end
 end

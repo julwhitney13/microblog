@@ -1,35 +1,3 @@
-<h2>Show Post</h2>
-
-<ul>
-
-  <li>
-    <strong>Title:</strong>
-    <%= @post.title %>
-  </li>
-
-  <li>
-    <strong>Description:</strong>
-    <%= @post.description %>
-  </li>
-
-  <li>
-    <strong>Content:</strong>
-    <%= @post.content %>
-  </li>
-
-  <li>
-    <strong>Hashtags:</strong>
-    <%= @post.hashtags %>
-  </li>
-
-  <li>
-    <strong>Mentions:</strong>
-    <%= @post.mentions %>
-  </li>
-
-</ul>
-
-
 <div class="container my-5">
     <div class="row">
         <div class="col-md-12">
@@ -40,12 +8,15 @@
                     <p class="card-text text-muted">by @<%= @post.user.username %></p>
                     <p class="card-text text-left"><%= @post.content %></p>
                     <div class="border-info card-footer text-muted"><%= @post.hashtags %></div>
+                    <div class="border-info card-footer text-muted">
+                        <%= if @current_user do %>
+                            <%= if @current_user.id == @user.id do %>
+                                <span><%= link "Edit Post", to: post_path(@conn, :edit, @user), class: "btn btn-info" %></span>
+                            <% end %>
+                        <% end %>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-
-<span><%= link "Edit", to: post_path(@conn, :edit, @post) %></span>
-<span><%= link "Back", to: post_path(@conn, :index) %></span>

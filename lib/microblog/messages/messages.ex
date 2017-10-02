@@ -18,7 +18,7 @@ defmodule Microblog.Messages do
 
   """
   def list_posts do
-    Repo.all(Post, preload: :users)
+    Repo.all(Post)
   end
 
   @doc """

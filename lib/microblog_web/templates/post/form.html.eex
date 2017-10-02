@@ -24,6 +24,12 @@
   </div>
 
   <div class="form-group">
+    <%= label f, :hashtags, class: "control-label" %>
+    <%= textarea f, :hashtags, class: "form-control" %>
+    <%= error_tag f, :hashtags %>
+  </div>
+
+  <div class="form-group">
     <%= submit "Submit", class: "btn btn-primary" %>
   </div>
 <% end %>
