@@ -10,7 +10,7 @@
                             <p class="card-subtitle mb-1 center-text"><%= link("@" <> user.username, to: user_path(@conn, :show, user)) %></p>
                         </div>
                         <div class="border-info card-footer center-text">
-                            <%= if @current_user do %>
+                            <%= if @current_user && @current_user.id != user.id do %>
                                 <%= if Microblog.Accounts.is_following?(@current_user.id, user.id) do %>
                                     <%= form_for @conn, relationship_path(@conn, :delete), [method: :delete, as: "relationship", class: "form-inline"], fn f -> %>
                                       <%= hidden_input f, :actor_id, value: @current_user.id %>
