@@ -7,7 +7,6 @@ defmodule Microblog.Accounts do
   alias Microblog.Repo
 
   alias Microblog.Accounts.User
-  require IEx;
   @doc """
   Returns the list of users.
 
@@ -184,7 +183,6 @@ defmodule Microblog.Accounts do
     %Relationship{}
     |> Relationship.changeset(attrs)
     |> Repo.insert()
-    IEx.pry
   end
 
   @doc """
