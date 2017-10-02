@@ -1,6 +1,6 @@
 defmodule MicroblogWeb.Helpers do
     import Ecto.Query, warn: false
-    # alias Microblog.Accounts.Relationship
+    alias Microblog.Accounts.Relationship
 
     # def user_has_posts(%User{} = user) do
     #     u = Microblog.Repo.preload(user, :posts)
@@ -10,6 +10,10 @@ defmodule MicroblogWeb.Helpers do
     # def get_posts(%User{} = user) do
     #     u = Microblog.Repo.preload(user, :posts)
     #     u.posts
+    # end
+
+    # def make_relationship_params(actor_id, receiver_id) do
+    #     defstruct [actor_id: actor_id, receiver_id: receiver_id]
     # end
 
     def is_following?(actor_id, receiver_id) do
