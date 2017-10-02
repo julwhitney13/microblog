@@ -166,9 +166,7 @@ defmodule Microblog.Accounts do
     #   else
     #       length(r) > 0
     #   end
-      user = get_user!(actor_id)
-      u = user |> Microblog.Repo.preload(:following)
-      Enum.any?(u.relationships, fn(x) -> (x.actor_id == actor_id) and (x.receiver_id == receiver_id) end)
+      !!Repo.get_by(Relationship, actor_id: actor_id, receiver_id: receiver_id)
   end
   @doc """
   Creates a relationship.
