@@ -11,10 +11,11 @@
                         </div>
                         <div class="border-info card-footer center-text">
                             <%= if @current_user do %>
+                                <%= d = defstruct [actor_id: @current_user.id, receiver_id: user.id] %>
                                 <%= if is_following?(@current_user.id, user.id) do %>
-                                    <%= link("unfollow", to: relationship_path(@conn, :delete, %{"actor_id" => @current_user.id, "receiver_id" => user.id}), class: "btn btn-info") %>
+                                    <%= link("unfollow", to: relationship_path(@conn, :delete, d), class: "btn btn-info") %>
                                 <% else %>
-                                    <%= link("follow", to: relationship_path(@conn, :create, %{"actor_id" => @current_user.id, "receiver_id" => user.id}), class: "btn btn-info") %>
+                                    <%= link("follow", to: relationship_path(@conn, :create, d), class: "btn btn-info") %>
                                 <% end %>
                             <% end %>
                         </div>
