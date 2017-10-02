@@ -138,19 +138,11 @@ defmodule Microblog.Accounts do
   """
   def get_relationship!(id), do: Repo.get!(Relationship, id)
 
-
-  def get_or_create_relationship(nil) do
-    Repo.insert!(%Relationship{})
-  end
-
-  # Referenced NuMart code from class here
-  def get_or_create_relationship(r_id) do
-    relationship = Repo.get(Relationship, r_id)
-    if relationship do
-      relationship
-    else
-      get_or_create_relationship(nil)
-    end
+  def get_relationship(actor_id, receiver_id) do
+      Repo.all(
+        from r in "relationships",
+        where: r.actor_id == ^actor_id and r.receiver_id == ^receiver_id
+       )
   end
 
   def get_followers(user_id) do
