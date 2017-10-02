@@ -14,7 +14,9 @@ defmodule MicroblogWeb.RelationshipController do
   #   render(conn, "new.html", changeset: changeset)
   # end
   #
-  def create(conn, %{"relationship" => relationship_params}) do
+  # def create(conn, %{"relationship" => relationship_params}) do
+
+  def create(conn, relationship_params) do
     case Accounts.create_relationship(relationship_params) do
       {:ok, relationship} ->
         conn
