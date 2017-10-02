@@ -20,21 +20,7 @@
             </div>
         </div>
         <div class="col-md-6">
-        <%= userofposts = Microblog.Repo.preload(@user, :posts) %>
-        <%= if userofposts.posts do %>
-            <%= for post <- userofposts.posts do %>
-                <div class="card text-center mb-3">
-                    <div class="card-body">
-                        <h4 class="card-title"><%= post.title %></h4>
-                        <p class="card-subtitle text-muted mb-3"><%= post.description %></p>
-                        <a href="#" class="btn btn-info">Read More</a>
-                    </div>
-                    <div class="card-footer"><small class="text-muted">Posted <%= post.inserted_at %></small></div>
-                </div>
-            <% end %>
-        <% else %>
-            <h4> No Posts Yet</h4>
-        <% end %>
+
 
         </div>
     </div>
