@@ -11,7 +11,7 @@ defmodule MicroblogWeb.Helpers do
     #     u = Microblog.Repo.preload(user, :posts)
     #     u.posts
     # end
-    # 
+    #
     # def make_relationship_params(actor_id, receiver_id) do
     #     defstruct [actor_id: actor_id, receiver_id: receiver_id]
     # end
@@ -27,8 +27,7 @@ defmodule MicroblogWeb.Helpers do
     def get_relationship(actor_id, receiver_id) do
         Microblog.Repo.all(
           from r in "relationships",
-          where: r.actor_id == ^actor_id and r.receiver_id == ^receiver_id,
-          select: r.id
+          where: r.actor_id == ^actor_id and r.receiver_id == ^receiver_id
          )
     end
 end
