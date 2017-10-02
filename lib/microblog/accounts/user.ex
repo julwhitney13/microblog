@@ -12,6 +12,7 @@ defmodule Microblog.Accounts.User do
     field :description, :string
 
     has_many :posts, Microblog.Messages.Post
+    has_many :relationships, Microblog.Accounts.Relationship
     timestamps()
   end
 

@@ -5,8 +5,10 @@ defmodule Microblog.Accounts.Relationship do
 
 
   schema "relationships" do
-    field :actor_id, :integer
-    field :receiver_id, :integer
+    # field :actor_id, :integer
+    # field :receiver_id, :integer
+    belongs_to :actor, Microblog.Accounts.User, foreign_key: :actor_id
+    belongs_to :receiver, Microblog.Accounts.User, foreign_key: :receiver_id
 
     timestamps()
   end
