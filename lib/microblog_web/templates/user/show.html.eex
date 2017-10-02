@@ -26,7 +26,7 @@
                         <div class="card-body">
                             <h4 class="card-title"><%= post.title %></h4>
                             <p class="card-subtitle text-muted mb-3"><%= post.description %></p>
-                            <a href="#" class="btn btn-info">Read More</a>
+                            <%= link "Read More", to: post_path(@conn, :show, post), class: "btn btn-info" %>
                         </div>
                         <div class="card-footer"><small class="text-muted">Posted <%= post.inserted_at %></small></div>
                     </div>

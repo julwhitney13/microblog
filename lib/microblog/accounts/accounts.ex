@@ -138,6 +138,18 @@ defmodule Microblog.Accounts do
   """
   def get_relationship!(id), do: Repo.get!(Relationship, id)
 
+  def get_followers(user_id) do
+      Repo.get_by(Relationship, receiver_id: user_id)
+  end
+
+  def get_following(user_id) do
+      Repo.get_by(Relationship, actor_id: user_id)
+  end
+
+  def is_following?(actor_id, receiver_id) do
+      r = %Relationship{actor_id: actor_id, receiver_id: receiver_id}
+      Repo.get(r) == nil
+  end
   @doc """
   Creates a relationship.
 
