@@ -11,7 +11,7 @@ defmodule MicroblogWeb.Helpers do
     #     u = Microblog.Repo.preload(user, :posts)
     #     u.posts
     # end
-
+    # 
     # def make_relationship_params(actor_id, receiver_id) do
     #     defstruct [actor_id: actor_id, receiver_id: receiver_id]
     # end
