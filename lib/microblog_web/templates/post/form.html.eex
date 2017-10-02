@@ -5,7 +5,14 @@
     </div>
   <% end %>
 
-  <%= hidden_input f, :user_id, value: @current_user.id %>
+  <%= if @current_user do %>
+    <%= hidden_input f, :user_id, value: @current_user.id %>
+  <% else %>
+      <div class="alert alert-danger">
+        <p>You must log in or create an account before making a post!</p>
+      </div>
+  <% end %>
+
 
   <div class="form-group">
     <%= label f, :title, class: "control-label" %>
