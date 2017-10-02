@@ -10,7 +10,7 @@
                     <div class="border-info card-footer text-muted"><%= @post.hashtags %></div>
                     <div class="border-info card-footer text-muted">
                         <%= if @current_user do %>
-                            <%= if @current_user.id == @user.id do %>
+                            <%= if @current_user.id == @post.user.id do %>
                                 <span><%= link "Edit Post", to: post_path(@conn, :edit, @user), class: "btn btn-info" %></span>
                             <% end %>
                         <% end %>
