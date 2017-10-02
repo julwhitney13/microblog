@@ -26,17 +26,18 @@ defmodule MicroblogWeb.Helpers do
          Microblog.Repo.get_by(Relationship, [actor_id: actor_id, receiver_id: receiver_id])
     end
 
-    def is_following?(actor_id, receiver_id) do
-        # r = %Relationship{actor_id: actor_id, receiver_id: receiver_id}
-        # Repo.get(Relationship, r) == nil
-
-        re = get_relationship(actor_id, receiver_id)
-        if !re do
-            false
-        else
-            length(re) > 0
-        end
-    end
+    # def is_following?(actor_id, receiver_id) do
+    #     # r = %Relationship{actor_id: actor_id, receiver_id: receiver_id}
+    #     # Repo.get(Relationship, r) == nil
+    #
+    #     re = get_relationship(actor_id, receiver_id)
+    #
+    #     if !re do
+    #         false
+    #     else
+    #         length(re) > 0
+    #     end
+    # end
     #
     # def get_relationship(actor_id, receiver_id) do
     #     Microblog.Repo.all(

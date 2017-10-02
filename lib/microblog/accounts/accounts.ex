@@ -157,10 +157,13 @@ defmodule Microblog.Accounts do
     #   r = %Relationship{actor_id: actor_id, receiver_id: receiver_id}
     #   Repo.get(Relationship, r) == nil
 
-      r = Repo.all(
+      r = Repo.one(
         from relationship in Relationship,
         where: [actor_id: ^actor_id, receiver_id: ^receiver_id]
         )
+      if !r do
+          false
+      end
       length(r) > 0
   end
   @doc """
