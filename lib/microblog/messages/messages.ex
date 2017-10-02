@@ -18,7 +18,7 @@ defmodule Microblog.Messages do
 
   """
   def list_posts do
-    Repo.all(Post)
+    Repo.preload(Repo.all(Post), :user)
   end
 
   @doc """
@@ -35,7 +35,7 @@ defmodule Microblog.Messages do
       ** (Ecto.NoResultsError)
 
   """
-  def get_post!(id), do: Repo.get!(Post, id)
+  def get_post!(id), Repo.preload(Repo.get!(Post, id), :user)
 
   @doc """
   Creates a post.
