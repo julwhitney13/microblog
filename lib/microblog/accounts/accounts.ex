@@ -152,7 +152,7 @@ defmodule Microblog.Accounts do
 
       r = Repo.all(
         from relationship in Relationship,
-        where: [actor_id: actor_id, receiver_id: receiver_id]
+        where: [actor_id: ^actor_id, receiver_id: ^receiver_id]
         )
       length(r) > 0
   end
