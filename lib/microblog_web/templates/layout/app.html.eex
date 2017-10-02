@@ -8,7 +8,7 @@
     <meta name="author" content="">
 
     <title>Hello Microblog!</title>
-    <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.scss") %>">
+    <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
 </head>
 
 <body>
@@ -44,7 +44,7 @@
                     </form> -->
 
                     <%= if @current_user do %>
-                    <span class="text-light">
+                    <span class="text-dark">
                         <%= @current_user.email %> |
                         <%= link("logout", to: session_path(@conn, :logout), method: :delete) %>
                     </span>
