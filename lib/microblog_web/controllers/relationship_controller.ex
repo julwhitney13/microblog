@@ -50,15 +50,15 @@ defmodule MicroblogWeb.RelationshipController do
   # end
 
   def get_or_create(conn, %{"id" => id}) do
-      case relationship = Accounts.get_or_create_relationship(id) do
+      case Accounts.get_or_create_relationship(id) do
         {:ok, relationship} ->
           conn
           |> put_flash(:info, "User followed successfully.")
-          |> redirect(to: user_path(conn, :show, relationship.receiver_id))
+        #   |> redirect(to: user_path(conn, :show, relationship.receiver_id))
         {:error, %Ecto.Changeset{} = changeset} ->
          conn
           |> put_flash(:error, "Error unfollowing user.")
-          |> redirect(to: user_path(conn, :show, relationship.receiver_id))
+        #   |> redirect(to: user_path(conn, :show, relationship.receiver_id))
       end
   end
 
