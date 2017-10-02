@@ -56,7 +56,7 @@
                         <p><small class="card-text text-muted">by <%= link("@" <> post.user.username, to: user_path(@conn, :show, post.user)) %></small></p>
                         <a href="#" class="btn btn-info">Read More</a>
                     </div>
-                    <div class="card-footer"><small class="text-muted">Posted <%= post.insterted_at %></small></div>
+                    <div class="card-footer"><small class="text-muted">Posted <%= post.inserted_at %></small></div>
                 </div>
             <% end %>
         </div>
