@@ -167,7 +167,7 @@ defmodule Microblog.Accounts do
     #       length(r) > 0
     #   end
       user = get_user!(actor_id)
-      u = user |> Microblog.Repo.preload(:relationships)
+      u = user |> Microblog.Repo.preload(:following)
       Enum.any?(u.relationships, fn(x) -> (x.actor_id == actor_id) and (x.receiver_id == receiver_id) end)
   end
   @doc """
