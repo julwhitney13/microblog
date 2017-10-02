@@ -5,16 +5,16 @@
                 <div class="card-body">
                     <div class="card-header border-info text-muted mb-3">Posted <%= @post.inserted_at %></div>
                     <h1 class="card-title"><%= @post.title %></h1>
-                    <p class="card-text text-muted">by @<%= @post.user.username %></p>
+                    <p class="card-text text-muted">by <%= link("@" <> @current_user.username, to: user_path(@conn, :show, @current_user)) %></p>
                     <p class="card-text text-left"><%= @post.content %></p>
                     <div class="border-info card-footer text-muted"><%= @post.hashtags %></div>
-                    <div class="border-info card-footer text-muted">
-                        <%= if @current_user do %>
-                            <%= if @current_user.id == @post.user.id do %>
-                                <span><%= link "Edit Post", to: post_path(@conn, :edit, @current_user), class: "btn btn-info" %></span>
-                            <% end %>
+                    <%= if @current_user do %>
+                        <%= if @current_user.id == @post.user.id do %>
+                        <div class="border-info card-footer text-muted">
+                            <span><%= link "Edit Post", to: post_path(@conn, :edit, @current_user), class: "btn btn-info" %></span>
+                        </div>
                         <% end %>
-                    </div>
+                    <% end %>
                 </div>
             </div>
         </div>
