@@ -12,15 +12,15 @@
                         <div class="border-info card-footer center-text">
                             <%= if @current_user do %>
                                 <%= if Microblog.Accounts.is_following?(@current_user.id, user.id) do %>
-                                    <%= form_for @conn, follow_path(@conn, :delete), [method: :delete, as: "follow", class: "form-inline"], fn f -> %>
-                                      <%= hidden_input f, :follower_id, value: @current_user.id %>
-                                      <%= hidden_input f, :following_id, value: user.id %>
+                                    <%= form_for @conn, relationship_path(@conn, :delete), [method: :delete, as: "follow", class: "form-inline"], fn f -> %>
+                                      <%= hidden_input f, :actor_id, value: @current_user.id %>
+                                      <%= hidden_input f, :receiver_id, value: user.id %>
                                       <%= submit "Unfollow", class: "btn btn-info" %>
                                     <% end %>
                                 <% else %>
-                                    <%= form_for @conn, follow_path(@conn, :create), [as: "follow", class: "form-inline"], fn f -> %>
-                                    <%= hidden_input f, :follower_id, value: @current_user.id %>
-                                    <%= hidden_input f, :following_id, value: user.id %>
+                                    <%= form_for @conn, relationship_path(@conn, :create), [as: "follow", class: "form-inline"], fn f -> %>
+                                    <%= hidden_input f, :actor_id, value: @current_user.id %>
+                                    <%= hidden_input f, :receiver_id, value: user.id %>
                                     <%= submit "Follow", class: "btn btn-info" %>
                                     <% end %>
                                 <% end %>
