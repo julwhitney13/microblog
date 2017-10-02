@@ -181,10 +181,10 @@ defmodule Microblog.Accounts do
 
   """
   def create_relationship(attrs \\ %{}) do
-      IEx.pry
     %Relationship{}
     |> Relationship.changeset(attrs)
     |> Repo.insert()
+    IEx.pry
   end
 
   @doc """
