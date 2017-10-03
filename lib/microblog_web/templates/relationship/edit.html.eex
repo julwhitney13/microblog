@@ -1,5 +1,0 @@
-<h2>Edit Relationship</h2>
-
-<%= render "form.html", Map.put(assigns, :action, relationship_path(@conn, :update, @relationship)) %>
-
-<span><%= link "Back", to: relationship_path(@conn, :index) %></span>

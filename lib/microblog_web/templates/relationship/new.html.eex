@@ -1,5 +1,0 @@
-<h2>New Relationship</h2>
-
-<%= render "form.html", Map.put(assigns, :action, relationship_path(@conn, :create)) %>
-
-<span><%= link "Back", to: relationship_path(@conn, :index) %></span>
