@@ -109,7 +109,6 @@ defmodule Microblog.Accounts do
 
   # Referenced this blog post https://www.railstutorial.org/book/following_users for query help!
   def get_user_feed(%User{} = user) do
-      uid = user.id
       Repo.preload(Repo.all(
         from p in Microblog.Messages.Post,
         preload: :relationships,
