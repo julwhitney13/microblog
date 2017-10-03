@@ -1,23 +1,30 @@
 server {
-        listen 80;
-        listen [::]:80;
+    listen 80;
+    listen [::]:80;
 
-        # root /home/kim/www/microblog;
-	
-	# index index.html;
+    # root /home/kim/www/microblog; 
 
-        server_name microblog.sorryiateallyourpancakes.com www.microblog.sorryiateallyourpancakes.com;
+    # Add index.php to the list if you are using PHP
+    # index index.html index.htm index.nginx-debian.html;
 
-        location / {
-            # Send all requests on to the Phoenix server.
-            proxy_pass http://localhost:8000;
-        }
+    server_name microblog.sorryiateallyourpancakes.com;
 
-        location ~* ^.+\.(css|cur|gif|gz|ico|jpg|jpeg|js|png|svg|woff|woff2)$ {
-            # Except static assets. Serve those directly.
-            root /home/kim/microblog/lib/microblog-0.0.1/priv/static;
-            etag off;
-            expires max;
-            add_header Cache-Control public;
-         }     
+    location / {
+        # First attempt to serve request as file, then
+        # as directory, then fall back to displaying a 404.
+        proxy_pass http://localhost:8000;
+        proxy_http_version 1.1;
+        proxy_set_header Connection "";
+        proxy_read_timeout 150;
+        fastcgi_read_timeout 180;
+        #try_files $uri $uri/ =404;
+        # autoindex on;
+    }
+
+    location ~* ^.+\.(css|cur|gif|gz|ico|jpg|jpeg|js|png|svg|woff|woff2)$ {
+        root /home/microblog/microblog/lib/microblog-0.0.1/priv/static;        
+        etag off;
+        expires max;
+        add_header Cache-Control public;
+    }     
 }
