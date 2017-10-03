@@ -109,12 +109,11 @@ defmodule Microblog.Accounts do
   # Referenced this blog post https://www.railstutorial.org/book/following_users for query help!
   def get_user_feed(%User{} = user) do
       uid = user.id
-      Repo.all(
+      Repo.preload(Repo.all(
         from p in Microblog.Messages.Post,
         where: p.user_id in fragment("SELECT receiver_id FROM relationships WHERE user_id = ?", ^uid)
-        or p.user_id == ^uid,
-        preload: :user
-      )
+        or p.user_id == ^uid
+      ) :user)
   end
 
   alias Microblog.Accounts.Relationship
