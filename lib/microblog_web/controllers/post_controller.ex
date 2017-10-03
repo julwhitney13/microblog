@@ -6,8 +6,6 @@ defmodule MicroblogWeb.PostController do
 
   def index(conn, _params) do
     posts = Messages.list_posts()
-    require IEx
-    IEx.pry
     render(conn, "index.html", posts: posts)
   end
 
