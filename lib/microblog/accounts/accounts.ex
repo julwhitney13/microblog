@@ -7,6 +7,8 @@ defmodule Microblog.Accounts do
   alias Microblog.Repo
 
   alias Microblog.Accounts.User
+  require IEx
+
   @doc """
   Returns the list of users.
 
@@ -113,7 +115,8 @@ defmodule Microblog.Accounts do
         from p in Microblog.Messages.Post,
         where: p.user_id in fragment("SELECT receiver_id FROM relationships WHERE user_id = ?", ^uid)
         or p.user_id == ^uid
-      ), [user: :posts])
+      ), :user)
+      IEx.pry
   end
 
   alias Microblog.Accounts.Relationship
