@@ -106,6 +106,15 @@ defmodule Microblog.Accounts do
   end
 
 
+  def get_user_feed(%User{} = user) do
+      Repo.all(from p in Microblog.Messages.Post,
+                      where: p.user_id in
+                        fragment("SELECT ^receiver_id FROM Relationship
+                                          WHERE p.user_id = ^user.id")
+                      or p.user_id == ^user.id
+                      )
+  end
+
   alias Microblog.Accounts.Relationship
 
   @doc """
@@ -138,10 +147,6 @@ defmodule Microblog.Accounts do
   def get_relationship!(id), do: Repo.get!(Relationship, id)
 
   def get_relationship(actor_id, receiver_id) do
-    #   Repo.one(
-    #     from r in Relationship,
-    #     where: r.actor_id == ^actor_id and r.receiver_id == ^receiver_id
-    #    )
       Repo.get_by(Relationship, actor_id: actor_id, receiver_id: receiver_id)
   end
 
@@ -154,8 +159,11 @@ defmodule Microblog.Accounts do
   end
 
   def is_following?(actor_id, receiver_id) do
-
-      !!Repo.get_by(Relationship, actor_id: actor_id, receiver_id: receiver_id)
+      if Repo.get_by(Relationship, actor_id: actor_id, receiver_id: receiver_id) do
+          true
+      else
+          false
+      end
   end
   @doc """
   Creates a relationship.

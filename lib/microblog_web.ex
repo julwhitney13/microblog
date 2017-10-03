@@ -23,7 +23,6 @@ defmodule MicroblogWeb do
       import Plug.Conn
       import MicroblogWeb.Router.Helpers
       import MicroblogWeb.Gettext
-      import MicroblogWeb.Helpers
     end
   end
 
@@ -41,7 +40,6 @@ defmodule MicroblogWeb do
       import MicroblogWeb.Router.Helpers
       import MicroblogWeb.ErrorHelpers
       import MicroblogWeb.Gettext
-      import MicroblogWeb.Helpers
     end
   end
 
