@@ -18,19 +18,20 @@
         <% end %>
             <h4 class="mb-3 text-center">Timeline</h4>
             <%= if @current_user do %>
-                <%= for post <- Microblog.Accounts.get_user_feed(@current_user) do %>
+                <%= all_posts = Microblog.Accounts.get_user_feed(@current_user) %>
             <% else %>
-                <%= for post <- @posts do %>
-                    <div class="card text-center mb-3">
-                        <div class="card-body">
-                            <h4 class="card-title"><%= post.title %></h4>
-                            <p class="card-subtitle lead"><%= post.description %></p>
-                            <p><small class="card-text text-muted">by <%= link("@" <> post.user.username, to: user_path(@conn, :show, post.user)) %></small></p>
-                            <%= link "Read More", to: post_path(@conn, :show, post), class: "btn btn-info" %>
-                        </div>
-                        <div class="card-footer"><small class="text-muted">Posted <%= post.inserted_at %></small></div>
+                <%= all_posts = @posts %>
+            <% end %>
+            <%= for post <- all_posts do %>
+                <div class="card text-center mb-3">
+                    <div class="card-body">
+                        <h4 class="card-title"><%= post.title %></h4>
+                        <p class="card-subtitle lead"><%= post.description %></p>
+                        <p><small class="card-text text-muted">by <%= link("@" <> post.user.username, to: user_path(@conn, :show, post.user)) %></small></p>
+                        <%= link "Read More", to: post_path(@conn, :show, post), class: "btn btn-info" %>
                     </div>
-                <% end %>
+                    <div class="card-footer"><small class="text-muted">Posted <%= post.inserted_at %></small></div>
+                </div>
             <% end %>
         </div>
     </div>
