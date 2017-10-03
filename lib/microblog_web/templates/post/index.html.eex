@@ -17,6 +17,8 @@
             <div class="col-md-12">
         <% end %>
             <h4 class="mb-3 text-center">Timeline</h4>
+            require IEx
+            IEx.pry
             <%= all_posts = if @current_user, do:  Microblog.Accounts.get_user_feed(@current_user), else: @posts  %>
             <%= for post <- all_posts do %>
                 <div class="card text-center mb-3">
