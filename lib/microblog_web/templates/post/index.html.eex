@@ -1,36 +1,33 @@
-<h2>Listing Posts</h2>
-
-<table class="table">
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Content</th>
-      <th>Authorid</th>
-      <th>Hashtags</th>
-      <th>Mentions</th>
-
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-<%= for post <- @posts do %>
-    <tr>
-      <td><%= post.title %></td>
-      <td><%= post.description %></td>
-      <td><%= post.content %></td>
-      <td><%= post.authorId %></td>
-      <td><%= post.hashtags %></td>
-      <td><%= post.mentions %></td>
-
-      <td class="text-right">
-        <span><%= link "Show", to: post_path(@conn, :show, post), class: "btn btn-default btn-xs" %></span>
-        <span><%= link "Edit", to: post_path(@conn, :edit, post), class: "btn btn-default btn-xs" %></span>
-        <span><%= link "Delete", to: post_path(@conn, :delete, post), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
-      </td>
-    </tr>
-<% end %>
-  </tbody>
-</table>
-
-<span><%= link "New Post", to: post_path(@conn, :new) %></span>
+<div class="container my-5">
+    <div class="row">
+        <%= if @current_user do %>
+            <div class="col-md-4">
+                <div class="card text-center">
+                    <img class="img-fluid img-rounded" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Blank_woman_placeholder.svg/2000px-Blank_woman_placeholder.svg.png" alt="me">
+                    <div class="card-body text-center">
+                        <h5 class="card-title"><%= @current_user.firstname %> <%= @current_user.lastname %></h5>
+                        <p class="card-title"><%= link("@" <> @current_user.username, to: user_path(@conn, :show, @current_user)) %></p>
+                        <%= link("View my profile", to: user_path(@conn, :show, @current_user), class: "btn btn-info m-2") %>
+                        <%= link "New Post", to: post_path(@conn, :new), class: "btn btn-success m-2" %>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+        <% else %>
+            <div class="col-md-12">
+        <% end %>
+            <h4 class="mb-3 text-center">Timeline</h4>
+            <%= for post <- @posts do %>
+                <div class="card text-center mb-3">
+                    <div class="card-body">
+                        <h4 class="card-title"><%= post.title %></h4>
+                        <p class="card-subtitle lead"><%= post.description %></p>
+                        <p><small class="card-text text-muted">by <%= link("@" <> post.user.username, to: user_path(@conn, :show, post.user)) %></small></p>
+                        <%= link "Read More", to: post_path(@conn, :show, post), class: "btn btn-info" %>
+                    </div>
+                    <div class="card-footer"><small class="text-muted">Posted <%= post.inserted_at %></small></div>
+                </div>
+            <% end %>
+        </div>
+    </div>
+</div>

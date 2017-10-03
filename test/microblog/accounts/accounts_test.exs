@@ -156,4 +156,66 @@ defmodule Microblog.AccountsTest do
       assert %Ecto.Changeset{} = Accounts.change_user(user)
     end
   end
+
+  describe "relationships" do
+    alias Microblog.Accounts.Relationship
+
+    @valid_attrs %{actor_id: 42, receiver_id: 42}
+    @update_attrs %{actor_id: 43, receiver_id: 43}
+    @invalid_attrs %{actor_id: nil, receiver_id: nil}
+
+    def relationship_fixture(attrs \\ %{}) do
+      {:ok, relationship} =
+        attrs
+        |> Enum.into(@valid_attrs)
+        |> Accounts.create_relationship()
+
+      relationship
+    end
+
+    test "list_relationships/0 returns all relationships" do
+      relationship = relationship_fixture()
+      assert Accounts.list_relationships() == [relationship]
+    end
+
+    test "get_relationship!/1 returns the relationship with given id" do
+      relationship = relationship_fixture()
+      assert Accounts.get_relationship!(relationship.id) == relationship
+    end
+
+    test "create_relationship/1 with valid data creates a relationship" do
+      assert {:ok, %Relationship{} = relationship} = Accounts.create_relationship(@valid_attrs)
+      assert relationship.actor_id == 42
+      assert relationship.receiver_id == 42
+    end
+
+    test "create_relationship/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Accounts.create_relationship(@invalid_attrs)
+    end
+
+    test "update_relationship/2 with valid data updates the relationship" do
+      relationship = relationship_fixture()
+      assert {:ok, relationship} = Accounts.update_relationship(relationship, @update_attrs)
+      assert %Relationship{} = relationship
+      assert relationship.actor_id == 43
+      assert relationship.receiver_id == 43
+    end
+
+    test "update_relationship/2 with invalid data returns error changeset" do
+      relationship = relationship_fixture()
+      assert {:error, %Ecto.Changeset{}} = Accounts.update_relationship(relationship, @invalid_attrs)
+      assert relationship == Accounts.get_relationship!(relationship.id)
+    end
+
+    test "delete_relationship/1 deletes the relationship" do
+      relationship = relationship_fixture()
+      assert {:ok, %Relationship{}} = Accounts.delete_relationship(relationship)
+      assert_raise Ecto.NoResultsError, fn -> Accounts.get_relationship!(relationship.id) end
+    end
+
+    test "change_relationship/1 returns a relationship changeset" do
+      relationship = relationship_fixture()
+      assert %Ecto.Changeset{} = Accounts.change_relationship(relationship)
+    end
+  end
 end

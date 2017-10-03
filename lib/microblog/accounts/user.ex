@@ -5,15 +5,15 @@ defmodule Microblog.Accounts.User do
 
 
   schema "users" do
-    field :description, :string
     field :email, :string
     field :firstname, :string
-    field :followers, :integer
-    field :following, :integer
     field :lastname, :string
-    field :posts, :integer
     field :username, :string
-    field :verified, :boolean, default: false
+    field :description, :string
+
+    has_many :posts, Microblog.Messages.Post
+    has_many :following, Microblog.Accounts.Relationship, foreign_key: :actor_id
+    has_many :followers, Microblog.Accounts.Relationship, foreign_key: :receiver_id
 
     timestamps()
   end
@@ -21,7 +21,7 @@ defmodule Microblog.Accounts.User do
   @doc false
   def changeset(%User{} = user, attrs) do
     user
-    |> cast(attrs, [:firstname, :lastname, :username, :email, :verified, :followers, :following, :posts, :description])
-    |> validate_required([:firstname, :lastname, :username, :email, :verified, :followers, :following, :posts, :description])
+    |> cast(attrs, [:firstname, :lastname, :username, :email, :description])
+    |> validate_required([:firstname, :lastname, :username, :email, :description])
   end
 end

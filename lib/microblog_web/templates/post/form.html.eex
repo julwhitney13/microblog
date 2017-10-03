@@ -5,6 +5,15 @@
     </div>
   <% end %>
 
+  <%= if @current_user do %>
+    <%= hidden_input f, :user_id, value: @current_user.id %>
+  <% else %>
+      <div class="alert alert-danger">
+        <p>You must log in or create an account before making a post!</p>
+      </div>
+  <% end %>
+
+
   <div class="form-group">
     <%= label f, :title, class: "control-label" %>
     <%= text_input f, :title, class: "form-control" %>
@@ -13,7 +22,7 @@
 
   <div class="form-group">
     <%= label f, :description, class: "control-label" %>
-    <%= textarea f, :description, class: "form-control" %>
+    <%= text_input f, :description, class: "form-control" %>
     <%= error_tag f, :description %>
   </div>
 
@@ -21,12 +30,6 @@
     <%= label f, :content, class: "control-label" %>
     <%= textarea f, :content, class: "form-control" %>
     <%= error_tag f, :content %>
-  </div>
-
-  <div class="form-group">
-    <%= label f, :authorId, class: "control-label" %>
-    <%= number_input f, :authorId, class: "form-control" %>
-    <%= error_tag f, :authorId %>
   </div>
 
   <div class="form-group">

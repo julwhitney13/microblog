@@ -1,42 +1,33 @@
-<h2>Listing Users</h2>
-
-<table class="table">
-  <thead>
-    <tr>
-      <th>Firstname</th>
-      <th>Lastname</th>
-      <th>Username</th>
-      <th>Email</th>
-      <th>Verified</th>
-      <th>Followers</th>
-      <th>Following</th>
-      <th>Posts</th>
-      <th>Description</th>
-
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-<%= for user <- @users do %>
-    <tr>
-      <td><%= user.firstname %></td>
-      <td><%= user.lastname %></td>
-      <td><%= user.username %></td>
-      <td><%= user.email %></td>
-      <td><%= user.verified %></td>
-      <td><%= user.followers %></td>
-      <td><%= user.following %></td>
-      <td><%= user.posts %></td>
-      <td><%= user.description %></td>
-
-      <td class="text-right">
-        <span><%= link "Show", to: user_path(@conn, :show, user), class: "btn btn-default btn-xs" %></span>
-        <span><%= link "Edit", to: user_path(@conn, :edit, user), class: "btn btn-default btn-xs" %></span>
-        <span><%= link "Delete", to: user_path(@conn, :delete, user), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
-      </td>
-    </tr>
-<% end %>
-  </tbody>
-</table>
-
-<span><%= link "New User", to: user_path(@conn, :new) %></span>
+<div class="container my-5">
+    <h1 class="mb-3">Users</h1>
+    <div class="row">
+        <div class="card-columns">
+            <%= for user <- @users do %>
+                <div class="card">
+                    <img class="card-img-top img-fluid" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Blank_woman_placeholder.svg/2000px-Blank_woman_placeholder.svg.png" alt="bw">
+                        <div class="card-body">
+                            <h4 class="card-title center-text"><%= user.firstname %> <%= user.lastname%></h4>
+                            <p class="card-subtitle mb-1 center-text"><%= link("@" <> user.username, to: user_path(@conn, :show, user)) %></p>
+                        </div>
+                        <div class="border-info card-footer center-text">
+                            <%= if @current_user && @current_user.id != user.id do %>
+                                <%= if Microblog.Accounts.is_following?(@current_user.id, user.id) do %>
+                                    <%= form_for @conn, relationship_path(@conn, :delete), [method: :delete, as: "relationship"], fn f -> %>
+                                      <%= hidden_input f, :actor_id, value: @current_user.id %>
+                                      <%= hidden_input f, :receiver_id, value: user.id %>
+                                      <%= submit "unfollow", class: "btn btn-info" %>
+                                    <% end %>
+                                <% else %>
+                                    <%= form_for @conn, relationship_path(@conn, :create), [as: "relationship"], fn f -> %>
+                                    <%= hidden_input f, :actor_id, value: @current_user.id %>
+                                    <%= hidden_input f, :receiver_id, value: user.id %>
+                                    <%= submit "follow", class: "btn btn-info" %>
+                                    <% end %>
+                                <% end %>
+                            <% end %>
+                        </div>
+                </div>
+            <% end %>
+        </div>
+    </div>
+</div>

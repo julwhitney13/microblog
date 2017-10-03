@@ -1,53 +1,53 @@
-<h2>Show User</h2>
-
-<ul>
-
-  <li>
-    <strong>Firstname:</strong>
-    <%= @user.firstname %>
-  </li>
-
-  <li>
-    <strong>Lastname:</strong>
-    <%= @user.lastname %>
-  </li>
-
-  <li>
-    <strong>Username:</strong>
-    <%= @user.username %>
-  </li>
-
-  <li>
-    <strong>Email:</strong>
-    <%= @user.email %>
-  </li>
-
-  <li>
-    <strong>Verified:</strong>
-    <%= @user.verified %>
-  </li>
-
-  <li>
-    <strong>Followers:</strong>
-    <%= @user.followers %>
-  </li>
-
-  <li>
-    <strong>Following:</strong>
-    <%= @user.following %>
-  </li>
-
-  <li>
-    <strong>Posts:</strong>
-    <%= @user.posts %>
-  </li>
-
-  <li>
-    <strong>Description:</strong>
-    <%= @user.description %>
-  </li>
-
-</ul>
-
-<span><%= link "Edit", to: user_path(@conn, :edit, @user) %></span>
-<span><%= link "Back", to: user_path(@conn, :index) %></span>
+<div class="container my-5">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <img class="img-fluid img-rounded" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Blank_woman_placeholder.svg/2000px-Blank_woman_placeholder.svg.png" alt="me">
+                <div class="card-body">
+                    <div class="row">
+                        <div class=col-md-6><h4 class="card-title"><%= @user.firstname %></h4></div>
+                        <div class=col-md-6><h4 class="card-title"><%= @user.username %></h4></div>
+                    </div>
+                    <p class="card-text">
+                        <%= @user.description %><br><br>
+                        <%= if @current_user do %>
+                            <%= if @current_user.id == @user.id do %>
+                                <span><%= link "Edit Profile", to: user_path(@conn, :edit, @user), class: "btn btn-info" %></span>
+                            <% else %>
+                                <%= if Microblog.Accounts.is_following?(@current_user.id, @user.id) do %>
+                                    <%= form_for @conn, relationship_path(@conn, :delete), [method: :delete, as: "relationship"], fn f -> %>
+                                      <%= hidden_input f, :actor_id, value: @current_user.id %>
+                                      <%= hidden_input f, :receiver_id, value: @user.id %>
+                                      <%= submit "unfollow", class: "btn btn-info" %>
+                                    <% end %>
+                                <% else %>
+                                    <%= form_for @conn, relationship_path(@conn, :create), [as: "relationship"], fn f -> %>
+                                    <%= hidden_input f, :actor_id, value: @current_user.id %>
+                                    <%= hidden_input f, :receiver_id, value: @user.id %>
+                                    <%= submit "follow", class: "btn btn-info" %>
+                                    <% end %>
+                                <% end %>
+                            <% end %>
+                        <% end %>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <%= if length(@posts) > 0 do %>
+                <%= for post <- @posts do %>
+                    <div class="card text-center mb-3">
+                        <div class="card-body">
+                            <h4 class="card-title"><%= post.title %></h4>
+                            <p class="card-subtitle text-muted mb-3"><%= post.description %></p>
+                            <%= link "Read More", to: post_path(@conn, :show, post), class: "btn btn-info" %>
+                        </div>
+                        <div class="card-footer"><small class="text-muted">Posted <%= post.inserted_at %></small></div>
+                    </div>
+                <% end %>
+            <% else %>
+                <h4 class="text-center">No Posts Yet</h4>
+            <% end %>
+        </div>
+    </div>
+</div>

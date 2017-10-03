@@ -6,6 +6,8 @@ defmodule MicroblogWeb.PostController do
 
   def index(conn, _params) do
     posts = Messages.list_posts()
+    require IEx
+    IEx.pry
     render(conn, "index.html", posts: posts)
   end
 
@@ -26,7 +28,7 @@ defmodule MicroblogWeb.PostController do
   end
 
   def show(conn, %{"id" => id}) do
-    post = Messages.get_post!(id)
+    post = Messages.get_post!(id) |> Microblog.Repo.preload(:user)
     render(conn, "show.html", post: post)
   end
 

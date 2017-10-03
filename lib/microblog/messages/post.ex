@@ -5,20 +5,19 @@ defmodule Microblog.Messages.Post do
 
 
   schema "posts" do
-    field :authorId, :integer
     field :content, :string
     field :description, :string
     field :hashtags, {:array, :string}
-    field :mentions, {:array, :integer}
     field :title, :string
 
+    belongs_to :user, Microblog.Accounts.User
     timestamps()
   end
 
   @doc false
   def changeset(%Post{} = post, attrs) do
     post
-    |> cast(attrs, [:title, :description, :content, :authorId, :hashtags, :mentions])
-    |> validate_required([:title, :description, :content, :authorId, :hashtags, :mentions])
+    |> cast(attrs, [:title, :description, :content, :hashtags, :user_id])
+    |> validate_required([:title, :description, :content])
   end
 end
