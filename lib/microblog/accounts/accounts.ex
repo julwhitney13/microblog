@@ -111,7 +111,7 @@ defmodule Microblog.Accounts do
       Repo.all(from p in Microblog.Messages.Post,
                       where: p.user_id in
                         fragment("SELECT receiver_id FROM relationships
-                                          WHERE user_id = uid")
+                                          WHERE user_id = ^uid")
                       or p.user_id == ^uid
                       )
   end
