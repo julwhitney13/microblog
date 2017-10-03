@@ -109,8 +109,8 @@ defmodule Microblog.Accounts do
   def get_user_feed(%User{} = user) do
       Repo.all(from p in Microblog.Messages.Post,
                       where: p.user_id in
-                        fragment("SELECT ^receiver_id FROM Relationship
-                                          WHERE p.user_id = ^user.id")
+                        fragment("SELECT receiver_id FROM Relationship
+                                          WHERE p.user_id = user.id")
                       or p.user_id == ^user.id
                       )
   end
