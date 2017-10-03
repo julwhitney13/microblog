@@ -1,0 +1,20 @@
+[Unit]
+Description=Microblog
+After=network.target
+
+[Service]
+Type=forking
+User=appuser
+Group=appuser
+WorkingDirectory=/home/kim/microblog
+ExecStart=/home/kim/microblog/bin/microblog start
+ExecStop=/home/kim/microblog/bin/microblog stop
+Restart=on-failure
+RestartSec=5
+Environment=PORT=8080
+Environment=LANG=en_US.UTF-8
+SyslogIdentifier=microblog
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
