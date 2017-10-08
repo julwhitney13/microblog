@@ -10,7 +10,7 @@
                     <div class="border-info card-footer">
 
 
-                        <div id="post-likes" data-path="<%= post_path(@conn, :index) %>" data-post_id="<%= @post.id %>"> &nbsp;</div>
+                        <div id="post-likes" data-path="<%= like_path(@conn, :index) %>" data-post_id="<%= @post.id %>"> &nbsp;</div>
 
                             <script id="likes-template" type="text/x-handlebars-template">
 
