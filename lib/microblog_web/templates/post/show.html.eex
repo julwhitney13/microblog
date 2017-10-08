@@ -7,7 +7,28 @@
                     <h1 class="card-title"><%= @post.title %></h1>
                     <p class="card-text text-muted">by <%= link("@" <> @post.user.username, to: user_path(@conn, :show, @post.user)) %></p>
                     <p class="card-text text-left" style="white-space: pre-line"><%= @post.content %></p>
-                    <div class="border-info card-footer text-muted"><%= @post.hashtags %></div>
+                    <div class="border-info card-footer">
+
+
+                        <div id="post-likes" data-path="<%= post_path(@conn, :index) %>" data-post_id="<%= @post.id %>"> &nbsp;</div>
+
+                            <script id="likes-template" type="text/x-handlebars-template">
+
+                                {{#each data}}
+                                <p>{{user_username}}
+                                {{else}}
+                                <p>0 likes</p>
+                                {{/each}}
+
+                            </script>
+
+                        <%= if @current_user do %>
+                          <button id="like-button" class="btn btn-danger" data-user_id="<%= @current_user.id %>" data-post_id="<%= @post.id %>">Like</button>
+                        <% end %>
+
+                    </div>
+
+
                     <%= if @current_user do %>
                         <%= if @current_user.id == @post.user.id do %>
                         <div class="border-info card-footer text-muted">

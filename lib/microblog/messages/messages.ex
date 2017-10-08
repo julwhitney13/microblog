@@ -117,7 +117,7 @@ defmodule Microblog.Messages do
       |> Repo.preload(:post)
   end
 
-  def list_post_likes(user_id) do
+  def list_user_likes(user_id) do
       Repo.all(from l in Like, where: l.user_id == ^user_id)
       |> Repo.preload(:user)
       |> Repo.preload(:post)

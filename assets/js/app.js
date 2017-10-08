@@ -19,3 +19,62 @@ import "phoenix_html"
 // paths "./socket" or full ones "web/static/js/socket".
 
 // import socket from "./socket"
+let handlebars = require("handlebars");
+
+$(function() {
+  if (!$("#likes-template").length > 0) {
+    // Wrong page.
+    return;
+  }
+
+  let tt = $($("#likes-template")[0]);
+  let code = tt.html();
+  let tmpl = handlebars.compile(code);
+
+  let dd = $($("#post-likes")[0]);
+  let path = dd.data('path');
+  let p_id = dd.data('post_id');
+
+  let bb = $($("#like-button")[0]);
+  let u_id = bb.data('user_id');
+  let pbb_u_id = bb.data('post_id');
+
+
+  function fetch_likes() {
+    function got_likes(data) {
+      console.log(data);
+      let html = tmpl(data);
+      dd.html(html);
+    }
+
+    $.ajax({
+      url: path,
+      data: {post_id: p_id},
+      contentType: "application/json",
+      dataType: "json",
+      method: "GET",
+      success: got_likes,
+    });
+  }
+
+  function add_like() {
+    // let like = $("#post-like").val();
+
+    let data = {like: {post_id: p_id, user_id: u_id}};
+
+    $.ajax({
+      url: path,
+      data: JSON.stringify(data),
+      contentType: "application/json",
+      dataType: "json",
+      method: "POST",
+      success: fetch_likes,
+    });
+
+    $("#post-like").val("");
+  }
+
+  bb.click(add_like);
+
+  fetch_likes();
+});
