@@ -42,14 +42,14 @@ defmodule Microblog.Accounts do
       Repo.get!(User, id)
       |> Repo.preload(:following)
       |> Repo.preload(:followers)
-      |> Repo.preload(:like)
+      |> Repo.preload(:likes)
   end
 
   def get_user_by_email(email) do
     Repo.get_by(User, email: email)
     |> Repo.preload(:following)
     |> Repo.preload(:followers)
-    |> Repo.preload(:like)
+    |> Repo.preload(:likes)
   end
 
   @doc """

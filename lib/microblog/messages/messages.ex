@@ -40,7 +40,7 @@ defmodule Microblog.Messages do
   def get_post!(id) do
       Repo.get!(Post, id)
       |> Repo.preload(:user)
-      |> Repo.preload(:like)
+      |> Repo.preload(:likes)
   end
 
   @doc """
