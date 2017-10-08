@@ -1,10 +1,8 @@
 defmodule MicroblogWeb.LikeView do
   use MicroblogWeb, :view
   alias MicroblogWeb.LikeView
-  require IEx
 
   def render("index.json", %{likes: likes}) do
-    IEx.pry
     %{data: render_many(likes, LikeView, "like.json")}
   end
 

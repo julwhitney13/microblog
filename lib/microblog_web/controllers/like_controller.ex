@@ -3,19 +3,17 @@ defmodule MicroblogWeb.LikeController do
 
   alias Microblog.Messages
   alias Microblog.Messages.Like
-  require IEx
 
   action_fallback MicroblogWeb.FallbackController
 
   def index(conn, %{"post_id" => post_id}) do
-    reviews = Messages.list_post_likes(post_id)
-    IEx.pry
-    render(conn, "index.json", reviews: reviews)
+    likes = Messages.list_post_likes(post_id)
+    render(conn, "index.json", likes: likes)
   end
 
   def index(conn, %{"user_id" => user_id}) do
-    reviews = Messages.list_user_likes(user_id)
-    render(conn, "index.json", reviews: reviews)
+    likes = Messages.list_user_likes(user_id)
+    render(conn, "index.json", likes: likes)
   end
 
   def index(conn, _params) do
