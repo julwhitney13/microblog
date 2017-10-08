@@ -21,7 +21,7 @@ defmodule Microblog.Accounts do
     Repo.all(User)
     |> Repo.preload(:following)
     |> Repo.preload(:followers)
-    |> Repo.preload(:like)
+    |> Repo.preload(:likes)
   end
 
   @doc """

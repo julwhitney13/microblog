@@ -20,7 +20,7 @@ defmodule Microblog.Messages do
   def list_posts do
     Repo.all(Post)
     |> Repo.preload(:user)
-    |> Repo.preload(:like)
+    |> Repo.preload(:likes)
   end
 
   @doc """
