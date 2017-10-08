@@ -37,7 +37,7 @@ defmodule Microblog.Accounts do
       ** (Ecto.NoResultsError)
 
   """
-  def get_user!(id), do
+  def get_user!(id) do
       Repo.get!(User, id)
       |> Repo.preload(:relationship)
       |> Repo.preload(:like)
@@ -155,7 +155,7 @@ defmodule Microblog.Accounts do
       ** (Ecto.NoResultsError)
 
   """
-  def get_relationship!(id), do
+  def get_relationship!(id) do
       Repo.get!(Relationship, id)
       |> Repo.preload(:user)
   end

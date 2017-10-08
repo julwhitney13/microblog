@@ -37,7 +37,7 @@ defmodule Microblog.Messages do
       ** (Ecto.NoResultsError)
 
   """
-  def get_post!(id), do
+  def get_post!(id) do
       Repo.get!(Post, id)
       |> Repo.preload(:user)
       |> Repo.preload(:like)
@@ -152,7 +152,7 @@ defmodule Microblog.Messages do
       ** (Ecto.NoResultsError)
 
   """
-  def get_like!(id), do
+  def get_like!(id) do
       Repo.get!(Like, id)
       |> Repo.preload(:user)
       |> Repo.preload(:post)
