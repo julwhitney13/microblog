@@ -29,6 +29,8 @@ $(function() {
 
   let tt = $($("#likes-template")[0]);
   let code = tt.html();
+  console.log(tt);
+  console.log(code);
   let tmpl = handlebars.compile(code);
 
   let dd = $($("#post-likes")[0]);
