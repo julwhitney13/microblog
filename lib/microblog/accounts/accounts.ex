@@ -19,7 +19,8 @@ defmodule Microblog.Accounts do
   """
   def list_users do
     Repo.all(User)
-    |> Repo.preload(:relationship)
+    |> Repo.preload(:following)
+    |> Repo.preload(:followers)
     |> Repo.preload(:like)
   end
 
@@ -39,13 +40,15 @@ defmodule Microblog.Accounts do
   """
   def get_user!(id) do
       Repo.get!(User, id)
-      |> Repo.preload(:relationship)
+      |> Repo.preload(:following)
+      |> Repo.preload(:followers)
       |> Repo.preload(:like)
   end
 
   def get_user_by_email(email) do
     Repo.get_by(User, email: email)
-    |> Repo.preload(:relationship)
+    |> Repo.preload(:following)
+    |> Repo.preload(:followers)
     |> Repo.preload(:like)
   end
 
