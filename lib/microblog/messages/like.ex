@@ -8,6 +8,9 @@ defmodule Microblog.Messages.Like do
     field :post_id, :integer
     field :user_id, :integer
 
+    belongs_to :user, Microblog.Accounts.User
+    belongs_to :post, Microblog.Messages.Post
+    
     timestamps()
   end
 

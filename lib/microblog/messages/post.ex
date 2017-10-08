@@ -10,6 +10,8 @@ defmodule Microblog.Messages.Post do
     field :hashtags, {:array, :string}
     field :title, :string
 
+    has_many :likes, Microblog.Messages.Like
+
     belongs_to :user, Microblog.Accounts.User
     timestamps()
   end

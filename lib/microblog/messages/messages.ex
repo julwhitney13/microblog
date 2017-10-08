@@ -18,7 +18,9 @@ defmodule Microblog.Messages do
 
   """
   def list_posts do
-    Repo.preload(Repo.all(Post), :user)
+    Repo.all(Post)
+    |> Repo.preload(:user)
+    |> Repo.preload(:like)
   end
 
   @doc """
@@ -35,7 +37,11 @@ defmodule Microblog.Messages do
       ** (Ecto.NoResultsError)
 
   """
-  def get_post!(id), do: Repo.get!(Post, id)
+  def get_post!(id), do
+      Repo.get!(Post, id)
+      |> Repo.preload(:user)
+      |> Repo.preload(:like)
+  end
 
   @doc """
   Creates a post.
@@ -104,6 +110,19 @@ defmodule Microblog.Messages do
 
   alias Microblog.Messages.Like
 
+
+  def list_post_likes(post_id) do
+      Repo.all(from l in Like, where l.post_id == ^post_id)
+      |> Repo.preload(:user)
+      |> Repo.preload(:post)
+  end
+
+  def list_post_likes(user_id) do
+      Repo.all(from l in Like, where l.user_id == ^user_id)
+      |> Repo.preload(:user)
+      |> Repo.preload(:post)
+  end
+
   @doc """
   Returns the list of likes.
 
@@ -115,6 +134,8 @@ defmodule Microblog.Messages do
   """
   def list_likes do
     Repo.all(Like)
+    |> Repo.preload(:user)
+    |> Repo.preload(:post)
   end
 
   @doc """
@@ -131,7 +152,11 @@ defmodule Microblog.Messages do
       ** (Ecto.NoResultsError)
 
   """
-  def get_like!(id), do: Repo.get!(Like, id)
+  def get_like!(id), do
+      Repo.get!(Like, id)
+      |> Repo.preload(:user)
+      |> Repo.preload(:post)
+  end
 
   @doc """
   Creates a like.
