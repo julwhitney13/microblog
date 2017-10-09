@@ -25,25 +25,25 @@ handlebars.registerHelper('num_likes', function(json) {
     return Object.keys(json).length;
 });
 //
-handlebars.registerHelper('button_html', function(data, user_id, post_id) {
-
-    var label = "like";
-    for (var index = 0; index < data.length; ++index) {
-
-     var key = data[index];
-     console.log(key);
-     console.log(key["user_id"]);
-
-     if(key.user_id == user_id) {
-         label = "unlike";
-     }
-    }
-    // return "like";
-    return new handlebars.SafeString('<button id="' + label + '-button" class="btn btn-danger" data-user_id="' + user_id + '"data-post_id="' + post_id + '">' + label + '</button>'
-    );
-
-
-});
+// handlebars.registerHelper('button_html', function(data, user_id, post_id) {
+//
+//     var label = "like";
+//     for (var index = 0; index < data.length; ++index) {
+//
+//      var key = data[index];
+//      console.log(key);
+//      console.log(key["user_id"]);
+//
+//      if(key.user_id == user_id) {
+//          label = "unlike";
+//      }
+//     }
+//     // return "like";
+//     return new handlebars.SafeString('<button id="' + label + '-button" class="btn btn-danger" data-user_id="' + user_id + '"data-post_id="' + post_id + '">' + label + '</button>'
+//     );
+//
+//
+// });
 
 $(function() {
   if (!$("#likes-template").length > 0) {
@@ -65,27 +65,8 @@ $(function() {
   let likebutton_post_id = likebutton.data('post_id');
 
   let unlikebutton = $($("#unlike-button")[0]);
-  // let unlike_id = unlikebutton.data('like_id');
   let unlike_user_id = unlikebutton.data('user_id');
   let unlikebutton_post_id = unlikebutton.data('post_id');
-
-
-  // handlebars.registerHelper('button_html', function(data) {
-  //
-  //     // var label = "like";
-  //     for (var index = 0; index < data.length; ++index) {
-  //
-  //      var key = data[index];
-  //
-  //      if(key.user_id == like_user_id){
-  //          return "unlike";
-  //      }
-  //     }
-  //     return "like";
-  //     // return '<button id="' + label + '-button" class="btn btn-danger" data-user_id="<%= @current_user.id %>" data-post_id="<%= @post.id %>">' + label + '</button>';
-  //
-  //
-  // });
 
   function fetch_likes() {
     function got_likes(data) {
@@ -118,7 +99,7 @@ $(function() {
     });
 
     $("#post-like").val("");
-    $("#like-button").val("alsdfja");
+    // $("#like-button").val("alsdfja");
   }
 
   function remove_like() {
