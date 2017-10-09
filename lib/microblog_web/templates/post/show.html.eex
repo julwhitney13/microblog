@@ -20,7 +20,7 @@
                     </script>
 
                     <%= if @current_user && Microblog.Messages.user_has_liked?(@current_user.id, @post.id) do %>
-                        <button id="unlike-button" class="btn btn-danger" data-user_id="<%= @current_user.id %>" data-post_id="<%= @post.id %>">Unlike</button>
+                        <button id="unlike-button" class="btn btn-info" data-user_id="<%= @current_user.id %>" data-post_id="<%= @post.id %>">Unlike</button>
                     <% else %>
                         <button id="like-button" class="btn btn-danger" data-user_id="<%= @current_user.id %>" data-post_id="<%= @post.id %>">Like</button>
                     <% end %>

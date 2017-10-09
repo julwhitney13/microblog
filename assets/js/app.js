@@ -85,9 +85,16 @@ $(function() {
     });
   }
 
+  function update_like_status(button, remove, add, text) {
+    button.removeClass(remove);
+    button.addClass(add);
+    button.text(text);
+  }
+
   function add_like() {
 
     let data = {like: {post_id: likebutton_post_id, user_id: like_user_id}};
+    var $button = $(this).find('button');
 
     $.ajax({
       url: path,
@@ -95,7 +102,16 @@ $(function() {
       contentType: "application/json",
       dataType: "json",
       method: "POST",
-      success: fetch_likes,
+      success: function(msg) {
+          fetch_likes();
+          update_like_status(
+              $button,
+              'btn-danger',
+              'btn-info',
+              'Unlike'
+          );
+          $button.attr("id").replace("unlike-button");
+      }
     });
 
     $("#post-like").val("");
@@ -105,6 +121,7 @@ $(function() {
   function remove_like() {
 
     let data = {post_id: unlikebutton_post_id, user_id: unlike_user_id};
+    var $button = $(this).find('button');
 
     $.ajax({
       url: path,
@@ -112,7 +129,16 @@ $(function() {
       contentType: "application/json",
       dataType: "json",
       method: "DELETE",
-      success: fetch_likes,
+      success: function(msg) {
+          fetch_likes();
+          update_like_status(
+              $button,
+              'btn-info',
+              'btn-danger',
+              'Like'
+          );
+          $button.attr("id").replace("like-button");
+      }
     });
 
     $("#post-like").val("");
