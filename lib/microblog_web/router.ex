@@ -35,7 +35,7 @@ defmodule MicroblogWeb.Router do
   # Other scopes may use custom stacks.
   scope "/api", MicroblogWeb do
     pipe_through :api
-    # resources "/likes", LikeController, except: [:new, :edit]
-    resources "/likes", LikeController, only: [:index]
+    resources "/likes", LikeController, except: [:new, :edit]
+    # resources "/likes", LikeController, only: [:index, :new]
   end
 end
