@@ -24,26 +24,6 @@ let handlebars = require("handlebars");
 handlebars.registerHelper('num_likes', function(json) {
     return Object.keys(json).length;
 });
-//
-// handlebars.registerHelper('button_html', function(data, user_id, post_id) {
-//
-//     var label = "like";
-//     for (var index = 0; index < data.length; ++index) {
-//
-//      var key = data[index];
-//      console.log(key);
-//      console.log(key["user_id"]);
-//
-//      if(key.user_id == user_id) {
-//          label = "unlike";
-//      }
-//     }
-//     // return "like";
-//     return new handlebars.SafeString('<button id="' + label + '-button" class="btn btn-danger" data-user_id="' + user_id + '"data-post_id="' + post_id + '">' + label + '</button>'
-//     );
-//
-//
-// });
 
 $(function() {
   if (!$("#likes-template").length > 0) {
@@ -58,7 +38,6 @@ $(function() {
   let showposts = $($("#post-likes")[0]);
   let path = showposts.data('path');
   let post_id = showposts.data('post_id');
-  // let current_user_id = showposts.data('current_user_id');
 
   let likebutton = $($("#like-button")[0]);
   let like_user_id = likebutton.data('user_id');
@@ -95,8 +74,6 @@ $(function() {
   function add_like() {
 
     let data = {like: {post_id: likebutton_post_id, user_id: like_user_id}};
-    // var $likebutton = $(this).find('like-button');
-    // var $unlikebutton = $(this).find('unlike-button');
 
     $.ajax({
       url: path,
@@ -108,20 +85,15 @@ $(function() {
           fetch_likes();
           likebutton.css("display","none");
           unlikebutton.css("display","inline-block");
-        //   $("#like-button-pls").load(" #like-button-pls");
-        //   $button.attr("id").replace("unlike-button");
       }
     });
 
-    // $("#post-like").val("");
     $("#like-button").val("");
   }
 
   function remove_like() {
 
     let data = {post_id: unlikebutton_post_id, user_id: unlike_user_id};
-    // var $likebutton = $("#like-button");
-    // var $unlikebutton = $("#unlike-botton");
 
     $.ajax({
       url: path,
@@ -133,18 +105,9 @@ $(function() {
           fetch_likes();
           unlikebutton.css("display","none");
           likebutton.css("display","inline-block");
-        //   $("#like-button-pls").load(" #like-button-pls");
-        //   update_like_status(
-        //       $button,
-        //       'btn-info',
-        //       'btn-danger',
-        //       'Like'
-        //   );
-        //   $button.attr("id").replace("like-button");
       }
     });
 
-    // $("#post-like").val("");
     $("#unlike-button").val("");
   }
 
