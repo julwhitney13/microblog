@@ -12,15 +12,18 @@
 
                         <div id="post-likes" data-path="<%= like_path(@conn, :index) %>" data-post_id="<%= @post.id %>"> &nbsp;</div>
 
-                            <script id="likes-template" type="text/x-handlebars-template">
+                        <script id="likes-template" type="text/x-handlebars-template">
                                 <p>{{num_likes data}} likes</p>
-                            </script>
 
-                        <%= if @current_user && Microblog.Messages.user_has_liked?(@current_user.id, @post.id) do %>
-                          <button id="unlike-button" class="btn btn-danger" data-user_id="<%= @current_user.id %>" data-post_id="<%= @post.id %>">Unlike</button>
-                        <% else %>
-                          <button id="like-button" class="btn btn-danger" data-user_id="<%= @current_user.id %>" data-post_id="<%= @post.id %>">Like</button>
-                        <% end %>
+
+                            <%= if @current_user && Microblog.Messages.user_has_liked?(@current_user.id, @post.id) do %>
+                              <button id="unlike-button" class="btn btn-danger" data-user_id="<%= @current_user.id %>" data-post_id="<%= @post.id %>">Unlike</button>
+                            <% else %>
+                              <button id="like-button" class="btn btn-danger" data-user_id="<%= @current_user.id %>" data-post_id="<%= @post.id %>">Like</button>
+                            <% end %>
+                        </script>
+
+
 
                     </div>
 
