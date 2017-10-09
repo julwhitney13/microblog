@@ -14,7 +14,7 @@
 
                     <%= if @current_user do %>
                         <script id="likes-template" type="text/x-handlebars-template">
-                            {{button_html data @current_user.id}}
+                            {{{button_html data @current_user.id}}}
                         </script>
                     <% end %>
 
