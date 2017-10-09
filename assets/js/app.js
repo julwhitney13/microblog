@@ -31,29 +31,33 @@ $(function() {
     return;
   }
 
-  let tt = $($("#likes-template")[0]);
-  let code = tt.html();
+  let likestemplate = $($("#likes-template")[0]);
+  let code = likestemplate.html();
   let tmpl = handlebars.compile(code);
 
-  let dd = $($("#post-likes")[0]);
-  let path = dd.data('path');
-  let p_id = dd.data('post_id');
+  let showposts = $($("#post-likes")[0]);
+  let path = showposts.data('path');
+  let post_id = showposts.data('post_id');
 
-  let bb = $($("#like-button")[0]);
-  let u_id = bb.data('user_id');
-  let pbb_u_id = bb.data('post_id');
+  let likebutton = $($("#like-button")[0]);
+  let like_user_id = likebutton.data('user_id');
+  let likebutton_post_id = likebutton.data('post_id');
 
+  let unlikebutton = $($("#unlike-button")[0]);
+  // let unlike_id = unlikebutton.data('like_id');
+  let unlike_user_id = unlikebutton.data('user_id');
+  let unlikebutton_post_id = unlikebutton.data('post_id');
 
   function fetch_likes() {
     function got_likes(data) {
       console.log(data);
       let html = tmpl(data);
-      dd.html(html);
+      showposts.html(html);
     }
 
     $.ajax({
       url: path,
-      data: {post_id: p_id},
+      data: {post_id: post_id},
       contentType: "application/json",
       dataType: "json",
       method: "GET",
@@ -62,9 +66,8 @@ $(function() {
   }
 
   function add_like() {
-    // let like = $("#post-like").val();
 
-    let data = {like: {post_id: p_id, user_id: u_id}};
+    let data = {like: {post_id: likebutton_post_id, user_id: like_user_id}};
 
     $.ajax({
       url: path,
@@ -78,7 +81,25 @@ $(function() {
     $("#post-like").val("");
   }
 
-  bb.click(add_like);
+  function remove_like() {
+
+    let data = {post_id: unlikebutton_post_id, user_id: unlike_user_id};
+
+    $.ajax({
+      url: path,
+      data: JSON.stringify(data),
+      contentType: "application/json",
+      dataType: "json",
+      method: "DELETE",
+      success: fetch_likes,
+    });
+
+    $("#post-like").val("");
+  }
+
+  likebutton.click(add_like);
+
+  unlikebutton.click(remove_like);
 
   fetch_likes();
 });

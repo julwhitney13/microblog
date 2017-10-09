@@ -123,6 +123,10 @@ defmodule Microblog.Messages do
       |> Repo.preload(:post)
   end
 
+  def user_has_liked?(user_id, post_id) do
+      !!Repo.get(from l in Like, where: l.user_id == ^user_id && l.post_id == ^post_id)
+  end
+
   @doc """
   Returns the list of likes.
 
@@ -156,6 +160,11 @@ defmodule Microblog.Messages do
       Repo.get!(Like, id)
       |> Repo.preload(:user)
       |> Repo.preload(:post)
+  end
+
+
+  def get_like(post_id, user_id) do
+      Repo.get_by(Like, user_id: user_id, post_id: post_id)
   end
 
   @doc """
