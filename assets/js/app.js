@@ -73,7 +73,6 @@ $(function() {
       console.log(data);
       let html = tmpl(data);
       showposts.html(html);
-      window.location.reload();
     }
 
     $.ajax({
