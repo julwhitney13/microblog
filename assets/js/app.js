@@ -31,8 +31,9 @@ handlebars.registerHelper('button_html', function(data, user_id) {
     for (var index = 0; index < data.length; ++index) {
 
      var key = data[index];
+     console.log(key);
 
-     if(key.user_id == user_id){
+     if(key.user_id == user_id) {
          label = "unlike";
      }
     }
