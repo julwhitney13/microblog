@@ -27,17 +27,18 @@ handlebars.registerHelper('num_likes', function(json) {
 //
 handlebars.registerHelper('button_html', function(data, user_id) {
 
-    // var label = "like";
+    var label = "like";
     for (var index = 0; index < data.length; ++index) {
 
      var key = data[index];
 
      if(key.user_id == user_id){
-         return "unlike";
+         label = "unlike";
      }
     }
-    return "like";
-    // return '<button id="' + label + '-button" class="btn btn-danger" data-user_id="<%= @current_user.id %>" data-post_id="<%= @post.id %>">' + label + '</button>';
+    // return "like";
+    return new handlebars.SafeString('<button id="' + label + '-button" class="btn btn-danger" data-user_id="<%= @current_user.id %>" data-post_id="<%= @post.id %>">' + label + '</button>'
+    );
 
 
 });
@@ -66,22 +67,22 @@ $(function() {
   let unlike_user_id = unlikebutton.data('user_id');
   let unlikebutton_post_id = unlikebutton.data('post_id');
 
-  handlebars.registerHelper('button_html', function(data) {
-
-      // var label = "like";
-      for (var index = 0; index < data.length; ++index) {
-
-       var key = data[index];
-
-       if(key.user_id == like_user_id){
-           return "unlike";
-       }
-      }
-      return "like";
-      // return '<button id="' + label + '-button" class="btn btn-danger" data-user_id="<%= @current_user.id %>" data-post_id="<%= @post.id %>">' + label + '</button>';
-
-
-  });
+  // handlebars.registerHelper('button_html', function(data) {
+  //
+  //     // var label = "like";
+  //     for (var index = 0; index < data.length; ++index) {
+  //
+  //      var key = data[index];
+  //
+  //      if(key.user_id == like_user_id){
+  //          return "unlike";
+  //      }
+  //     }
+  //     return "like";
+  //     // return '<button id="' + label + '-button" class="btn btn-danger" data-user_id="<%= @current_user.id %>" data-post_id="<%= @post.id %>">' + label + '</button>';
+  //
+  //
+  // });
 
   function fetch_likes() {
     function got_likes(data) {
@@ -113,7 +114,7 @@ $(function() {
       success: fetch_likes,
     });
 
-    $("#like-button").val("lasdlfij");
+    $("#post-like").val("");
   }
 
   function remove_like() {
