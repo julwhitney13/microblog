@@ -25,6 +25,20 @@ handlebars.registerHelper('num_likes', function(json) {
     return Object.keys(json).length;
 });
 
+handlebars.registerHelper('button_label', function(data, user_id) {
+
+
+    for (var index = 0; index < data.length; ++index) {
+
+     var key = data[index];
+
+     if(key.user_id == user_id){
+         return "Unlike";
+     }
+    }
+    return "Like";
+});
+
 $(function() {
   if (!$("#likes-template").length > 0) {
     // Wrong page.
