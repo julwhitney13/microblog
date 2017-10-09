@@ -58,7 +58,7 @@ $(function() {
   let showposts = $($("#post-likes")[0]);
   let path = showposts.data('path');
   let post_id = showposts.data('post_id');
-  // let current_user_id = showposts.data('current_user_id');
+  let current_user_id = showposts.data('current_user_id');
 
   let likebutton = $($("#like-button")[0]);
   let like_user_id = likebutton.data('user_id');
@@ -68,6 +68,7 @@ $(function() {
   // let unlike_id = unlikebutton.data('like_id');
   let unlike_user_id = unlikebutton.data('user_id');
   let unlikebutton_post_id = unlikebutton.data('post_id');
+
 
   // handlebars.registerHelper('button_html', function(data) {
   //
@@ -117,6 +118,7 @@ $(function() {
     });
 
     $("#post-like").val("");
+    $("#like-button").val("alsdfja");
   }
 
   function remove_like() {

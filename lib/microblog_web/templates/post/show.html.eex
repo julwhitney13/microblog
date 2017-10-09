@@ -9,14 +9,20 @@
                     <p class="card-text text-left" style="white-space: pre-line"><%= @post.content %></p>
                     <div class="border-info card-footer">
 
-
-                    <div id="post-likes" data-path="<%= like_path(@conn, :index) %>" data-post_id="<%= @post.id %>"> &nbsp;</div>
-
                     <%= if @current_user do %>
-                        <script id="likes-template" type="text/x-handlebars-template">
-                            <p>{{num_likes data}} likes</p>
-                            {{{button_html data @current_user.id @post.id}}}
-                        </script>
+                        <div id="post-likes" data-path="<%= like_path(@conn, :index) %>" data-post_id="<%= @post.id %>" data-current_user_id="<%= @current_user.id %>"> &nbsp;</div>
+                    <% else %>
+                        <div id="post-likes" data-path="<%= like_path(@conn, :index) %>" data-post_id="<%= @post.id %>" data-current_user_id="nil"> &nbsp;</div>
+                    <% end %>
+
+                    <script id="likes-template" type="text/x-handlebars-template">
+                        <p>{{num_likes data}} likes</p>
+                    </script>
+
+                    <%= if @current_user && Microblog.Messages.user_has_liked?(@current_user.id, @post.id) do %>
+                        <button id="unlike-button" class="btn btn-danger" data-user_id="<%= @current_user.id %>" data-post_id="<%= @post.id %>">Unlike</button>
+                    <% else %>
+                        <button id="like-button" class="btn btn-danger" data-user_id="<%= @current_user.id %>" data-post_id="<%= @post.id %>">Like</button>
                     <% end %>
 
                     </div>
