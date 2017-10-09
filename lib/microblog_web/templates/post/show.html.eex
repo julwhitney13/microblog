@@ -14,12 +14,11 @@
 
                         <script id="likes-template" type="text/x-handlebars-template">
                                 <p>{{num_likes data}} likes</p>
+                                {{assign button_name {{button_label data @current_user.id}}}}
                         </script>
 
                         <%= if @current_user do %>
-                        <script id="likes-template" type="text/x-handlebars-template">
-                          <button id="like-button" class="btn btn-danger" data-user_id="<%= @current_user.id %>" data-post_id="<%= @post.id %>">{{button_label data @current_user.id}}</button>
-                            </script>
+                          <button id="like-button" class="btn btn-danger" data-user_id="<%= @current_user.id %>" data-post_id="<%= @post.id %>">button_name</button>
                         <% end %>
 
 
