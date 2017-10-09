@@ -50,8 +50,8 @@ defmodule MicroblogWeb.LikeController do
     end
   end
 
-  def delete(conn, %{"like" => like_params}) do
-    like = Messages.get_like(like_params["post_id"], like_params["user_id"])
+  def delete(conn, %{"post_id" => post_id, "user_id" => user_id})) do
+    like = Messages.get_like(post_id, user_id)
     with {:ok, %Like{}} <- Messages.delete_like(like) do
       send_resp(conn, :no_content, "")
     end
