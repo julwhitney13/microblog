@@ -10,19 +10,25 @@
                     <div class="border-info card-footer">
 
 
-                        <div id="post-likes" data-path="<%= like_path(@conn, :index) %>" data-post_id="<%= @post.id %>"> &nbsp;</div>
+                    <div id="post-likes" data-path="<%= like_path(@conn, :index) %>" data-post_id="<%= @post.id %>"> &nbsp;</div>
 
                         <!-- <script id="likes-template" type="text/x-handlebars-template">
                                 <p>{{num_likes data}} likes</p>
                         </script> -->
 
-                        <%= if @current_user do %>
-                            <script id="likes-template" type="text/x-handlebars-template">
-                                <p>{{num_likes data}} likes</p>
-                                <html>{{button_html data @current_user.id}}</html>
-                            </script>
-                        <% end %>
+                        <!-- <script id="likes-template" type="text/x-handlebars-template">
+                            <p>{{num_likes data}} likes</p>
+                        </script> -->
 
+                        <%= if @current_user do %>
+                            <button id="like-button" class="btn btn-danger" data-user_id="<%= @current_user.id %>" data-post_id="<%= @post.id %>" data-current_user_id="<%= @current_user.id %>">
+                                <script id="likes-template" type="text/x-handlebars-template">
+                                    {{button_html data}}
+                                </script>
+                            </button>
+                        <!-- <% else %>
+                            <button id="like-button" class="btn btn-danger" data-user_id="<%= @current_user.id %>" data-post_id="<%= @post.id %>">Like</button> -->
+                        <% end %>
 
                     </div>
 

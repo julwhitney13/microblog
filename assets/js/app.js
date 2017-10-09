@@ -24,19 +24,20 @@ let handlebars = require("handlebars");
 handlebars.registerHelper('num_likes', function(json) {
     return Object.keys(json).length;
 });
-
+//
 handlebars.registerHelper('button_html', function(data, user_id) {
 
-    var label = "like";
+    // var label = "like";
     for (var index = 0; index < data.length; ++index) {
 
      var key = data[index];
 
      if(key.user_id == user_id){
-         label = "unlike";
+         return "unlike";
      }
     }
-    return '<button id="' + label + '-button" class="btn btn-danger" data-user_id="<%= @current_user.id %>" data-post_id="<%= @post.id %>">' + label + '</button>';
+    return "like";
+    // return '<button id="' + label + '-button" class="btn btn-danger" data-user_id="<%= @current_user.id %>" data-post_id="<%= @post.id %>">' + label + '</button>';
 
 
 });
@@ -54,6 +55,7 @@ $(function() {
   let showposts = $($("#post-likes")[0]);
   let path = showposts.data('path');
   let post_id = showposts.data('post_id');
+  let current_user_id = showposts.data('current_user_id');
 
   let likebutton = $($("#like-button")[0]);
   let like_user_id = likebutton.data('user_id');
@@ -63,6 +65,23 @@ $(function() {
   // let unlike_id = unlikebutton.data('like_id');
   let unlike_user_id = unlikebutton.data('user_id');
   let unlikebutton_post_id = unlikebutton.data('post_id');
+
+  handlebars.registerHelper('button_html', function(data) {
+
+      // var label = "like";
+      for (var index = 0; index < data.length; ++index) {
+
+       var key = data[index];
+
+       if(key.user_id == like_user_id){
+           return "unlike";
+       }
+      }
+      return "like";
+      // return '<button id="' + label + '-button" class="btn btn-danger" data-user_id="<%= @current_user.id %>" data-post_id="<%= @post.id %>">' + label + '</button>';
+
+
+  });
 
   function fetch_likes() {
     function got_likes(data) {
@@ -94,7 +113,7 @@ $(function() {
       success: fetch_likes,
     });
 
-    $("#post-like").val("");
+    $("#like-button").val("lasdlfij");
   }
 
   function remove_like() {
