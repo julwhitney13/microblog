@@ -23,7 +23,7 @@
                                 <p>0 likes</p>
                                 {{/each}} -->
 
-                                <p>{{#num_likes data}} likes{{/num_likes}}</p>
+                                <p>{{num_likes data}} likes</p>
 
 
                             </script>
