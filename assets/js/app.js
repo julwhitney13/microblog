@@ -25,21 +25,21 @@ handlebars.registerHelper('num_likes', function(json) {
     return Object.keys(json).length;
 });
 //
-handlebars.registerHelper('button_html', function(data, user_id) {
+handlebars.registerHelper('button_html', function(data, user_id, post_id) {
 
     var label = "like";
     for (var index = 0; index < data.length; ++index) {
 
      var key = data[index];
      console.log(key);
-     console.log(key.user_id);
+     console.log(key["user_id"]);
 
      if(key.user_id == user_id) {
          label = "unlike";
      }
     }
     // return "like";
-    return new handlebars.SafeString('<button id="' + label + '-button" class="btn btn-danger" data-user_id="<%= @current_user.id %>" data-post_id="<%= @post.id %>">' + label + '</button>'
+    return new handlebars.SafeString('<button id="' + label + '-button" class="btn btn-danger" data-user_id="' + user_id + '"data-post_id="' + post_id + '">' + label + '</button>'
     );
 
 
