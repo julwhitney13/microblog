@@ -26,7 +26,7 @@ defmodule MicroblogWeb.LikeController do
       conn
       |> put_status(:created)
       |> put_resp_header("location", like_path(conn, :show, like))
-      |> render("index.json", like: like)
+      |> render("show.json", like: like)
     end
   end
 
