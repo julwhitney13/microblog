@@ -25,18 +25,20 @@ handlebars.registerHelper('num_likes', function(json) {
     return Object.keys(json).length;
 });
 
-handlebars.registerHelper('button_label', function(data, user_id) {
+handlebars.registerHelper('button_html', function(data, user_id) {
 
-
+    var label = "like";
     for (var index = 0; index < data.length; ++index) {
 
      var key = data[index];
 
      if(key.user_id == user_id){
-         return "Unlike";
+         label = "unlike";
      }
     }
-    return "Like";
+    return '<button id=' + label + '-button" class="btn btn-danger" data-user_id="<%= @current_user.id %>" data-post_id="<%= @post.id %>">' + label + '</button>';
+
+
 });
 
 $(function() {
