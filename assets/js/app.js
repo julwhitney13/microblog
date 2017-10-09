@@ -36,7 +36,7 @@ handlebars.registerHelper('button_html', function(data, user_id) {
          label = "unlike";
      }
     }
-    return '<button id=' + label + '-button" class="btn btn-danger" data-user_id="<%= @current_user.id %>" data-post_id="<%= @post.id %>">' + label + '</button>';
+    return '<button id="' + label + '-button" class="btn btn-danger" data-user_id="<%= @current_user.id %>" data-post_id="<%= @post.id %>">' + label + '</button>';
 
 
 });
