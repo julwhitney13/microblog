@@ -58,7 +58,7 @@ $(function() {
   let showposts = $($("#post-likes")[0]);
   let path = showposts.data('path');
   let post_id = showposts.data('post_id');
-  let current_user_id = showposts.data('current_user_id');
+  // let current_user_id = showposts.data('current_user_id');
 
   let likebutton = $($("#like-button")[0]);
   let like_user_id = likebutton.data('user_id');
@@ -108,12 +108,13 @@ $(function() {
           fetch_likes();
           likebutton.css("display","none");
           unlikebutton.css("display","inline-block");
+        //   $("#like-button-pls").load(" #like-button-pls");
         //   $button.attr("id").replace("unlike-button");
       }
     });
 
-    $("#post-like").val("");
-    // $("#like-button").val("alsdfja");
+    // $("#post-like").val("");
+    $("#like-button").val("");
   }
 
   function remove_like() {
@@ -132,6 +133,7 @@ $(function() {
           fetch_likes();
           unlikebutton.css("display","none");
           likebutton.css("display","inline-block");
+        //   $("#like-button-pls").load(" #like-button-pls");
         //   update_like_status(
         //       $button,
         //       'btn-info',
@@ -142,7 +144,8 @@ $(function() {
       }
     });
 
-    $("#post-like").val("");
+    // $("#post-like").val("");
+    $("#unlike-button").val("");
   }
 
   likebutton.click(add_like);
