@@ -106,8 +106,8 @@ $(function() {
       method: "POST",
       success: function(msg) {
           fetch_likes();
-          $likebutton.addClass("hidden-xl-down");
-          $unlikebutton.removeClass("hidden-xl-down");
+          $likebutton.css("display","none");
+          $unlikebutton.css("display","inline-block");
         //   $button.attr("id").replace("unlike-button");
       }
     });
@@ -130,8 +130,8 @@ $(function() {
       method: "DELETE",
       success: function(msg) {
           fetch_likes();
-          $unlikebutton.addClass("hidden-xl-down");
-          $likebutton.removeClass("hidden-xl-down");
+          $unlikebutton.css("display","none");
+          $likebutton.css("display","inline-block");
         //   update_like_status(
         //       $button,
         //       'btn-info',

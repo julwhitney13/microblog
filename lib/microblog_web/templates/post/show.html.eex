@@ -21,9 +21,9 @@
 
                     <%= if @current_user && Microblog.Messages.user_has_liked?(@current_user.id, @post.id) do %>
                         <button id="unlike-button" class="btn btn-info" data-user_id="<%= @current_user.id %>" data-post_id="<%= @post.id %>">Unlike</button>
-                        <button id="like-button" class="btn btn-danger hidden-xl-down" data-user_id="<%= @current_user.id %>" data-post_id="<%= @post.id %>">Like</button>
+                        <button id="like-button" class="btn btn-danger" style="display: none" data-user_id="<%= @current_user.id %>" data-post_id="<%= @post.id %>">Like</button>
                     <% else %>
-                        <button id="unlike-button" class="btn btn-info hidden-xl-down" data-user_id="<%= @current_user.id %>" data-post_id="<%= @post.id %>">Unlike</button>
+                        <button id="unlike-button" class="btn btn-info" style="display:none" data-user_id="<%= @current_user.id %>" data-post_id="<%= @post.id %>">Unlike</button>
                         <button id="like-button" class="btn btn-danger" data-user_id="<%= @current_user.id %>" data-post_id="<%= @post.id %>">Like</button>
                     <% end %>
 
