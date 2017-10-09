@@ -88,13 +88,15 @@ $(function() {
   function update_like_status(button, remove, add, text) {
     button.removeClass(remove);
     button.addClass(add);
+    button.addClass("hidden-xl-down")
     button.text(text);
   }
 
   function add_like() {
 
     let data = {like: {post_id: likebutton_post_id, user_id: like_user_id}};
-    var $button = $(this).find('button');
+    var $likebutton = $(this).find('like-button');
+    var $unlikebutton = $(this).find('unlike-button');
 
     $.ajax({
       url: path,
@@ -104,13 +106,9 @@ $(function() {
       method: "POST",
       success: function(msg) {
           fetch_likes();
-          update_like_status(
-              $button,
-              'btn-danger',
-              'btn-info',
-              'Unlike'
-          );
-          $button.attr("id").replace("unlike-button");
+          $likebutton.addClass("hidden-xl-down");
+          $unlikebutton.removeClass("hidden-xl-down");
+        //   $button.attr("id").replace("unlike-button");
       }
     });
 
@@ -121,7 +119,8 @@ $(function() {
   function remove_like() {
 
     let data = {post_id: unlikebutton_post_id, user_id: unlike_user_id};
-    var $button = $(this).find('button');
+    var $likebutton = $(this).find('like-button');
+    var $unlikebutton = $(this).find('unlike-button');
 
     $.ajax({
       url: path,
@@ -131,13 +130,15 @@ $(function() {
       method: "DELETE",
       success: function(msg) {
           fetch_likes();
-          update_like_status(
-              $button,
-              'btn-info',
-              'btn-danger',
-              'Like'
-          );
-          $button.attr("id").replace("like-button");
+          $unlikebutton.addClass("hidden-xl-down");
+          $likebutton.removeClass("hidden-xl-down");
+        //   update_like_status(
+        //       $button,
+        //       'btn-info',
+        //       'btn-danger',
+        //       'Like'
+        //   );
+        //   $button.attr("id").replace("like-button");
       }
     });
 
