@@ -21,7 +21,7 @@ import "phoenix_html"
 // import socket from "./socket"
 let handlebars = require("handlebars");
 
-Handlebars.registerHelper('num_likes', function(json) {
+handlebars.registerHelper('num_likes', function(json) {
     return Object.keys(json).length;
 });
 
