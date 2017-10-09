@@ -14,9 +14,7 @@
 
                             <script id="likes-template" type="text/x-handlebars-template">
 
-                                Handlebars.registerHelper("num_likes", function(json) {
-                                    return Object.keys(json).length;
-                                });
+
 
                                 <!-- {{#each data}}
                                 <p>Liked by: {{user_username}}</p>
@@ -24,7 +22,11 @@
                                 <p>0 likes</p>
                                 {{/each}} -->
 
-                                <p>{{num_likes data}} likes</p>
+                                <p>{{#num_likes data}} likes</p>
+
+                                Handlebars.registerHelper("num_likes", function(json) {
+                                    return Object.keys(json).length;
+                                });
 
                             </script>
 
