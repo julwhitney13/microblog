@@ -95,8 +95,8 @@ $(function() {
   function add_like() {
 
     let data = {like: {post_id: likebutton_post_id, user_id: like_user_id}};
-    var $likebutton = $(this).find('like-button');
-    var $unlikebutton = $(this).find('unlike-button');
+    // var $likebutton = $(this).find('like-button');
+    // var $unlikebutton = $(this).find('unlike-button');
 
     $.ajax({
       url: path,
@@ -106,8 +106,8 @@ $(function() {
       method: "POST",
       success: function(msg) {
           fetch_likes();
-          $likebutton.css("display","none");
-          $unlikebutton.css("display","inline-block");
+          likebutton.css("display","none");
+          unlikebutton.css("display","inline-block");
         //   $button.attr("id").replace("unlike-button");
       }
     });
@@ -119,8 +119,8 @@ $(function() {
   function remove_like() {
 
     let data = {post_id: unlikebutton_post_id, user_id: unlike_user_id};
-    var $likebutton = $(this).find('like-button');
-    var $unlikebutton = $(this).find('unlike-button');
+    // var $likebutton = $("#like-button");
+    // var $unlikebutton = $("#unlike-botton");
 
     $.ajax({
       url: path,
@@ -130,8 +130,8 @@ $(function() {
       method: "DELETE",
       success: function(msg) {
           fetch_likes();
-          $unlikebutton.css("display","none");
-          $likebutton.css("display","inline-block");
+          unlikebutton.css("display","none");
+          likebutton.css("display","inline-block");
         //   update_like_status(
         //       $button,
         //       'btn-info',
