@@ -32,16 +32,6 @@
                             <p>{{num_likes data}} likes</p>
                         </script>
 
-                        <%= cond do %>
-                            <% @current_user && Microblog.Messages.user_has_liked?(@current_user.id, post.id) -> %>
-                                <button id="unlike-button" class="btn btn-info" data-user_id="<%= @current_user.id %>" data-post_id="<%= post.id %>">Unlike</button>
-                                <button id="like-button" class="btn btn-danger" style="display: none" data-user_id="<%= @current_user.id %>" data-post_id="<%= post.id %>">Like</button>
-                            <% @current_user -> %>
-                                <button id="unlike-button" class="btn btn-info" style="display:none" data-user_id="<%= @current_user.id %>" data-post_id="<%= post.id %>">Unlike</button>
-                                <button id="like-button" class="btn btn-danger" data-user_id="<%= @current_user.id %>" data-post_id="<%= post.id %>">Like</button>
-                            <% true -> %>
-                        <% end %>
-
                     </div>
                     <div class="card-footer"><small class="text-muted">Posted <%= post.inserted_at %></small></div>
                 </div>
