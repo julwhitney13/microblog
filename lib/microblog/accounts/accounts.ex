@@ -19,6 +19,9 @@ defmodule Microblog.Accounts do
   """
   def list_users do
     Repo.all(User)
+    |> Repo.preload(:following)
+    |> Repo.preload(:followers)
+    |> Repo.preload(:likes)
   end
 
   @doc """
@@ -35,10 +38,18 @@ defmodule Microblog.Accounts do
       ** (Ecto.NoResultsError)
 
   """
-  def get_user!(id), do: Repo.get!(User, id)
+  def get_user!(id) do
+      Repo.get!(User, id)
+      |> Repo.preload(:following)
+      |> Repo.preload(:followers)
+      |> Repo.preload(:likes)
+  end
 
   def get_user_by_email(email) do
     Repo.get_by(User, email: email)
+    |> Repo.preload(:following)
+    |> Repo.preload(:followers)
+    |> Repo.preload(:likes)
   end
 
   @doc """
@@ -130,6 +141,7 @@ defmodule Microblog.Accounts do
   """
   def list_relationships do
     Repo.all(Relationship)
+    |> Repo.preload(:user)
   end
 
   @doc """
@@ -146,18 +158,24 @@ defmodule Microblog.Accounts do
       ** (Ecto.NoResultsError)
 
   """
-  def get_relationship!(id), do: Repo.get!(Relationship, id)
+  def get_relationship!(id) do
+      Repo.get!(Relationship, id)
+      |> Repo.preload(:user)
+  end
 
   def get_relationship(actor_id, receiver_id) do
       Repo.get_by(Relationship, actor_id: actor_id, receiver_id: receiver_id)
+      |> Repo.preload(:user)
   end
 
   def get_followers(user_id) do
       Repo.get_by(Relationship, receiver_id: user_id)
+      |> Repo.preload(:user)
   end
 
   def get_following(user_id) do
       Repo.get_by(Relationship, actor_id: user_id)
+      |> Repo.preload(:user)
   end
 
   def is_following?(actor_id, receiver_id) do

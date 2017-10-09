@@ -14,6 +14,7 @@ defmodule Microblog.Accounts.User do
     has_many :posts, Microblog.Messages.Post
     has_many :following, Microblog.Accounts.Relationship, foreign_key: :actor_id
     has_many :followers, Microblog.Accounts.Relationship, foreign_key: :receiver_id
+    has_many :likes, Microblog.Messages.Like
 
     timestamps()
   end

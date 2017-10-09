@@ -6,8 +6,28 @@
                     <div class="card-header border-info text-muted mb-3">Posted <%= @post.inserted_at %></div>
                     <h1 class="card-title"><%= @post.title %></h1>
                     <p class="card-text text-muted">by <%= link("@" <> @post.user.username, to: user_path(@conn, :show, @post.user)) %></p>
-                    <p class="card-text text-left"><%= @post.content %></p>
-                    <div class="border-info card-footer text-muted"><%= @post.hashtags %></div>
+                    <p class="card-text text-left" style="white-space: pre-line"><%= @post.content %></p>
+                    <div class="border-info card-footer">
+
+                    <div id="post-likes" data-path="<%= like_path(@conn, :index) %>" data-post_id="<%= @post.id %>"> &nbsp;</div>
+
+                    <script id="likes-template" type="text/x-handlebars-template">
+                        <p>{{num_likes data}} likes</p>
+                    </script>
+
+                    <%= cond do %>
+                        <% @current_user && Microblog.Messages.user_has_liked?(@current_user.id, @post.id) -> %>
+                            <button id="unlike-button" class="btn btn-info" data-user_id="<%= @current_user.id %>" data-post_id="<%= @post.id %>">Unlike</button>
+                            <button id="like-button" class="btn btn-danger" style="display: none" data-user_id="<%= @current_user.id %>" data-post_id="<%= @post.id %>">Like</button>
+                        <% @current_user -> %>
+                            <button id="unlike-button" class="btn btn-info" style="display:none" data-user_id="<%= @current_user.id %>" data-post_id="<%= @post.id %>">Unlike</button>
+                            <button id="like-button" class="btn btn-danger" data-user_id="<%= @current_user.id %>" data-post_id="<%= @post.id %>">Like</button>
+                        <% true -> %>
+                    <% end %>
+
+                    </div>
+
+
                     <%= if @current_user do %>
                         <%= if @current_user.id == @post.user.id do %>
                         <div class="border-info card-footer text-muted">
