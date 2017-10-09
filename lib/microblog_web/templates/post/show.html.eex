@@ -7,7 +7,7 @@
                     <h1 class="card-title"><%= @post.title %></h1>
                     <p class="card-text text-muted">by <%= link("@" <> @post.user.username, to: user_path(@conn, :show, @post.user)) %></p>
                     <p class="card-text text-left" style="white-space: pre-line"><%= @post.content %></p>
-                    <div id="like-div" class="border-info card-footer">
+                    <div class="border-info card-footer">
 
                     <%= if @current_user do %>
                         <div id="post-likes" data-path="<%= like_path(@conn, :index) %>" data-post_id="<%= @post.id %>" data-current_user_id="<%= @current_user.id %>"> &nbsp;</div>
