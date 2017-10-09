@@ -32,6 +32,7 @@ handlebars.registerHelper('button_html', function(data, user_id) {
 
      var key = data[index];
      console.log(key);
+     console.log(key.user_id);
 
      if(key.user_id == user_id) {
          label = "unlike";
@@ -57,7 +58,7 @@ $(function() {
   let showposts = $($("#post-likes")[0]);
   let path = showposts.data('path');
   let post_id = showposts.data('post_id');
-  let current_user_id = showposts.data('current_user_id');
+  // let current_user_id = showposts.data('current_user_id');
 
   let likebutton = $($("#like-button")[0]);
   let like_user_id = likebutton.data('user_id');
