@@ -55,6 +55,8 @@ $(function() {
   let code = likestemplate.html();
   let tmpl = handlebars.compile(code);
 
+  let likediv = $($("#like-div")[0]);
+
   let showposts = $($("#post-likes")[0]);
   let path = showposts.data('path');
   let post_id = showposts.data('post_id');
@@ -72,7 +74,7 @@ $(function() {
     function got_likes(data) {
       console.log(data);
       let html = tmpl(data);
-      showposts.html(html);
+      likediv.html(html);
     }
 
     $.ajax({
