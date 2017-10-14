@@ -13,9 +13,20 @@
                 </div>
             </div>
             <div class="col-md-8">
+                <%= for post <- Microblog.Accounts.get_user_feed(@current_user) do %>
+                    <div class="card text-center mb-3">
+                        <div class="card-body">
+                            <h4 class="card-title"><%= post.title %></h4>
+                            <p class="card-subtitle lead"><%= post.description %></p>
+                            <p><small class="card-text text-muted">by <%= link("@" <> post.user.username, to: user_path(@conn, :show, post.user)) %></small></p>
+                            <%= link "Read More", to: post_path(@conn, :show, post), class: "btn btn-info" %>
+                        </div>
+                        <div class="card-footer"><small class="text-muted">Posted <%= post.inserted_at %></small></div>
+                    </div>
+                <% end %>
+            </div>
         <% else %>
             <div class="col-md-12">
-        <% end %>
             <h4 class="mb-3 text-center">Timeline</h4>
             <%= for post <- @posts do %>
                 <div class="card text-center mb-3">
@@ -28,6 +39,7 @@
                     <div class="card-footer"><small class="text-muted">Posted <%= post.inserted_at %></small></div>
                 </div>
             <% end %>
-        </div>
+            </div>
+        <% end %>
     </div>
 </div>
