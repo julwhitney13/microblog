@@ -18,7 +18,7 @@ defmodule Microblog.Messages do
 
   """
   def list_posts do
-    Repo.all(Post)
+    Repo.all(Post, order_by: [desc: :updated_at])
     |> Repo.preload(:user)
     |> Repo.preload(:likes)
   end
