@@ -135,7 +135,7 @@ defmodule Microblog.Accounts do
 
 
   def get_user_feed(%User{} = user) do
-      following_ids = Repo.all(from r in Microblog.Accounts.Relationship, select: r.following_id, where: r.follower_id == ^user.id)
+      following_ids = Repo.all(from r in Microblog.Accounts.Relationship, select: r.receiver_id, where: r.actor_id == ^user.id)
       Repo.all(from p in Microblog.Messages.Post, where: p.user_id in ^following_ids or p.user_id == ^user.id)
       |> Repo.preload(:user)
       |> Repo.preload(:post)
