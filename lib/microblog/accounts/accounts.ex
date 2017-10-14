@@ -118,30 +118,16 @@ defmodule Microblog.Accounts do
   end
 
 
+  alias Microblog.Accounts.Relationship
+
+
   # Referenced this blog post https://www.railstutorial.org/book/following_users for query help!
-  def get_user_feed_two(%User{} = user) do
-      uid = user.id
-      Repo.preload(Repo.all(
-        from p in Microblog.Messages.Post,
-        where: p.user_id in fragment("SELECT receiver_id FROM relationships WHERE user_id = ?", ^uid)
-        or p.user_id == ^uid
-      ), :user)
-  end
-#
-#   following_ids = "SELECT followed_id FROM relationships
-#                  WHERE  follower_id = :user_id"
-# Micropost.where("user_id IN (#{following_ids})
-#                  OR user_id = :user_id", user_id: id)
-
-
   def get_user_feed(%User{} = user) do
-      following_ids = Repo.all(from r in Microblog.Accounts.Relationship, select: r.receiver_id, where: r.actor_id == ^user.id)
-      Repo.all(from p in Microblog.Messages.Post, where: p.user_id in ^following_ids or p.user_id == ^user.id)
+      following_ids = Repo.all(from r in Relationship, select: r.receiver_id, where: r.actor_id == ^user.id)
+      Repo.all(from p in Microblog.Messages.Post, where: p.user_id in ^following_ids or p.user_id == ^user.id, order_by: [desc: :updated_at])
       |> Repo.preload(:user)
       |> Repo.preload(:likes)
   end
-
-  alias Microblog.Accounts.Relationship
 
   @doc """
   Returns the list of relationships.
