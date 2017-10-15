@@ -85,6 +85,7 @@ $(function() {
     //  +})
 
     channel.on("new_message_posted", payload => {
+        console.log(payload);
         // let posts_feed = $($("#posts-feed")[0])
         if ($(`#post-${payload.id}`).length === 0) {
             console.log("new message posted?")

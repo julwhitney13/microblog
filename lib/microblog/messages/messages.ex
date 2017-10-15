@@ -59,7 +59,6 @@ defmodule Microblog.Messages do
     %Post{}
     |> Post.changeset(attrs)
     |> Repo.insert()
-    |> Repo.preload(:user)
   end
 
   @doc """
