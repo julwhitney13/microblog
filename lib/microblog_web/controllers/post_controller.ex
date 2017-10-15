@@ -15,6 +15,7 @@ defmodule MicroblogWeb.PostController do
   end
 
   def create(conn, %{"post" => post_params}) do
+    MicroblogWeb.Endpoint.broadcast("updates:all", "new_post", post_params)
     case Messages.create_post(post_params) do
       {:ok, post} ->
         conn

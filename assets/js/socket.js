@@ -53,10 +53,57 @@ let socket = new Socket("/socket", {params: {token: window.userToken}})
 
 socket.connect()
 
+let channel = socket.channel("updates:all")
+// https://medium.com/elixir-magic/writing-a-blog-engine-in-phoenix-and-elixir-part-9-live-comments-9269669a6941
+// http://learningelixir.joekain.com/pushing-model-changes-to-a-phoenix-channel/
+$(function() {
+    if (!$("#posts-feed").length > 0) {
+      // Wrong page.
+      return
+    }
+
+    const createMessage = (payload) => `
+        <div id="post-${payload.id}" class="card text-center mb-3">
+            <div class="card-body">
+                <h4 class="card-title">${payload.title}</h4>
+                <p class="card-subtitle lead">${payload.description}</p>
+                <p><small class="card-text text-muted">by <%= link("@" <> ${payload.user.username}, to: user_path(@conn, :show, ${payload.user})) %></small></p>
+                <%= link "Read More", to: post_path(@conn, :show, ${payload}), class: "btn btn-info" %>
+            </div>
+            <div class="card-footer"><small class="text-muted">Posted ${payload.inserted_at}</small></div>
+        </div>
+    `
+    //  +
+    //  +channel.on("new_msg", payload => {
+    //  +  console.log('channel received new message', payload)
+    //  +  let messagesList = document.querySelector("#messages")
+    //  +
+    //  +  if (messagesList) {
+    //  +    let messageItem = buildMessageItem(payload);
+    //  +    messagesList.prepend(messageItem)
+    //  +  }
+    //  +})
+
+    channel.on("new_message_posted", payload => {
+        // let posts_feed = $($("#posts-feed")[0])
+        if ($(`#post-${payload.id}`).length === 0) {
+            $("#posts-feed").before(
+            createMessage(payload)
+            )
+        }
+    })
+    // Join the topic
+    // let channel = socket.channel(topic, {})
+
+    channel.join()
+      .receive("ok", resp => { console.log("Joined successfully", resp) })
+      .receive("error", resp => { console.log("Unable to join", resp) })
+})
+
+
+
 // Now that you are connected, you can join channels with a topic:
-let channel = socket.channel("topic:subtopic", {})
-channel.join()
-  .receive("ok", resp => { console.log("Joined successfully", resp) })
-  .receive("error", resp => { console.log("Unable to join", resp) })
+// let channel = socket.channel("topic:subtopic", {})
+
 
 export default socket
