@@ -127,6 +127,15 @@ defmodule Microblog.Messages do
       !!Repo.get_by(Like, user_id: user_id, post_id: post_id)
   end
 
+  def broadcast_to_followers(author_id, broadcast_params) do
+      followers = Microblog.Accounts.get_followers(author_id)
+      if !!followers do
+          for fid <- followers do
+              MicroblogWeb.Endpoint.broadcast("updates:" <> Integer.to_string(fid), "new_message_posted", broadcast_params)
+          end
+      end
+      MicroblogWeb.Endpoint.broadcast("updates:" <> Integer.to_string(author_id), "new_message_posted", broadcast_params)
+  end
   @doc """
   Returns the list of likes.
 

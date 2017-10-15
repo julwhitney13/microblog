@@ -15,10 +15,11 @@ defmodule MicroblogWeb.PostController do
   end
 
   def create(conn, %{"post" => post_params}) do
-    broadcast_params = Map.put(post_params, "user", Microblog.Accounts.get_user!(post_params["user_id"]))
     case Messages.create_post(post_params) do
       {:ok, post} ->
-        MicroblogWeb.Endpoint.broadcast("updates:all", "new_message_posted", broadcast_params)
+        author = Microblog.Accounts.get_user!(post_params["user_id"])
+        broadcast_params = Map.put(post_params, "username", author.username)
+        Messages.broadcast_to_followers(author.id, broadcast_params)
         conn
         |> put_flash(:info, "Post created successfully.")
         |> redirect(to: post_path(conn, :show, post))

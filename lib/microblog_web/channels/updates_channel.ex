@@ -9,16 +9,17 @@ defmodule MicroblogWeb.UpdatesChannel do
     end
   end
 
-#   def join("updates:" <> uid, payload, socket) do
-#   if authorized?(payload) do
-#     socket = socket
-#     |> Socket.assign(:name, gname)
-#     |> Socket.assign(:user, payload["user"])
-#     {:ok, socket}
-#   else
-#     {:error, %{reason: "unauthorized"}}
-#   end
-# end
+  def join("updates:" <> uid, payload, socket) do
+    if authorized?(payload) do
+
+    #   socket = socket
+    #   |> socket.assign(:uid, uid)
+    #   |> socket.assign(:user, payload["user"])
+      {:ok, socket}
+    else
+      {:error, %{reason: "unauthorized"}}
+    end
+  end
 
 
   # Channels can be used in a request/response fashion

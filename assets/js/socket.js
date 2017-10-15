@@ -53,22 +53,27 @@ let socket = new Socket("/socket", {params: {token: window.userToken}})
 
 socket.connect()
 
-let channel = socket.channel("updates:all")
+
+// Referenced some tutorial info from the following blogs in creating this function:
 // https://medium.com/elixir-magic/writing-a-blog-engine-in-phoenix-and-elixir-part-9-live-comments-9269669a6941
 // http://learningelixir.joekain.com/pushing-model-changes-to-a-phoenix-channel/
+
 $(function() {
     if (!$("#posts-feed").length > 0) {
       // Wrong page.
       return
     }
 
+    let topic = (!$("#current_user_id").length > 0) ? "updates:all" : "updates:" + $("#current_user_id").val()
+    let channel = socket.channel(topic)
+
     const createMessage = (payload) => `
         <div id="post-${payload.id}" class="card text-center mb-3">
             <div class="card-body">
                 <h4 class="card-title">${payload.title}</h4>
                 <p class="card-subtitle lead">${payload.description}</p>
-                <p><small class="card-text text-muted">by <%= link("@" <> ${payload.user.username}, to: user_path(@conn, :show, ${payload.user})) %></small></p>
-                <%= link "Read More", to: post_path(@conn, :show, ${payload}), class: "btn btn-info" %>
+                <p><small class="card-text text-muted">by <a href="/users/${payload.user_id}">@${payload.username}</a></small></p>
+                <a href="/posts/${payload.id}" class="btn btn-info">Read More</a>
             </div>
             <div class="card-footer"><small class="text-muted">Posted ${payload.inserted_at}</small></div>
         </div>
@@ -86,7 +91,6 @@ $(function() {
 
     channel.on("new_message_posted", payload => {
         console.log(payload);
-        // let posts_feed = $($("#posts-feed")[0])
         if ($(`#post-${payload.id}`).length === 0) {
             console.log("new message posted?")
             $("#posts-feed").before(

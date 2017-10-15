@@ -171,9 +171,9 @@ defmodule Microblog.Accounts do
   end
 
   def get_followers(user_id) do
-      Repo.get_by(Relationship, receiver_id: user_id)
-      |> Repo.preload(:actor)
-      |> Repo.preload(:receiver)
+    #   Repo.get_by(Relationship, receiver_id: user_id)
+      Repo.all(from r in Relationship, select: r.actor_id, where: r.receiver_id == ^user_id)
+    #   |> Enum.map(fn r -> r.actor_id end)
   end
 
   def get_following(user_id) do
