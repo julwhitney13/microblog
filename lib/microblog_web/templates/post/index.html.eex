@@ -14,7 +14,7 @@
             </div>
             <div class="col-md-8" id="posts-feed">
                 <%= for post <- Microblog.Accounts.get_user_feed(@current_user) do %>
-                    <div class="card text-center mb-3" id="post-" <> <%= post.id %>>
+                    <div class="card text-center mb-3" id="post-<%= post.id %>">
                         <div class="card-body">
                             <h4 class="card-title"><%= post.title %></h4>
                             <p class="card-subtitle lead"><%= post.description %></p>
@@ -28,7 +28,7 @@
         <% else %>
             <div class="col-md-12" id="posts-feed">
             <%= for post <- @posts do %>
-                <div class="card text-center mb-3" id="post-" <> <%= post.id %>>
+                <div class="card text-center mb-3" id="post-<%= post.id %>">
                     <div class="card-body">
                         <h4 class="card-title"><%= post.title %></h4>
                         <p class="card-subtitle lead"><%= post.description %></p>
