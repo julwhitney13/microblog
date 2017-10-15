@@ -68,7 +68,7 @@ $(function() {
                 <h4 class="card-title">${payload.title}</h4>
                 <p class="card-subtitle lead">${payload.description}</p>
                 <p><small class="card-text text-muted">by <%= link("@" <> ${payload.username}, to: user_path(@conn, :show, ${payload.user_id})) %></small></p>
-                <%= link "Read More", to: post_path(@conn, :show, ${payload}), class: "btn btn-info" %>
+                <%= link "Read More", to: post_path(@conn, :show, ${payload.id}), class: "btn btn-info" %>
             </div>
             <div class="card-footer"><small class="text-muted">Posted ${payload.inserted_at}</small></div>
         </div>
