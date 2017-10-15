@@ -12,7 +12,9 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-8" id="posts-feed">
+            <div class="col-md-8">
+                <div id="posts-feed">
+                <h4>My Timeline</h4>
                 <%= for post <- Microblog.Accounts.get_user_feed(@current_user) do %>
                     <div class="card text-center mb-3" id="post-<%= post.id %>">
                         <div class="card-body">
@@ -24,20 +26,24 @@
                         <div class="card-footer"><small class="text-muted">Posted <%= post.inserted_at %></small></div>
                     </div>
                 <% end %>
+                </div>
             </div>
         <% else %>
-            <div class="col-md-12" id="posts-feed">
-            <%= for post <- @posts do %>
-                <div class="card text-center mb-3" id="post-<%= post.id %>">
-                    <div class="card-body">
-                        <h4 class="card-title"><%= post.title %></h4>
-                        <p class="card-subtitle lead"><%= post.description %></p>
-                        <p><small class="card-text text-muted">by <%= link("@" <> post.user.username, to: user_path(@conn, :show, post.user)) %></small></p>
-                        <%= link "Read More", to: post_path(@conn, :show, post), class: "btn btn-info" %>
+            <div class="col-md-12">
+                <h4>Timeline</h4>
+                <div id ="posts-feed">
+                <%= for post <- @posts do %>
+                    <div class="card text-center mb-3" id="post-<%= post.id %>">
+                        <div class="card-body">
+                            <h4 class="card-title"><%= post.title %></h4>
+                            <p class="card-subtitle lead"><%= post.description %></p>
+                            <p><small class="card-text text-muted">by <%= link("@" <> post.user.username, to: user_path(@conn, :show, post.user)) %></small></p>
+                            <%= link "Read More", to: post_path(@conn, :show, post), class: "btn btn-info" %>
+                        </div>
+                        <div class="card-footer"><small class="text-muted">Posted <%= post.inserted_at %></small></div>
                     </div>
-                    <div class="card-footer"><small class="text-muted">Posted <%= post.inserted_at %></small></div>
+                <% end %>
                 </div>
-            <% end %>
             </div>
         <% end %>
     </div>

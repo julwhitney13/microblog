@@ -61,14 +61,15 @@ $(function() {
       // Wrong page.
       return
     }
-
+                // <p><small class="card-text text-muted">by <%= link("@" <> ${payload.username}, to: user_path(@conn, :show, ${payload.user_id})) %></small></p>
+                // <%= link "Read More", to: post_path(@conn, :show, ${payload.id}), class: "btn btn-info" %>
     const createMessage = (payload) => `
         <div id="post-${payload.id}" class="card text-center mb-3">
             <div class="card-body">
                 <h4 class="card-title">${payload.title}</h4>
                 <p class="card-subtitle lead">${payload.description}</p>
-                <p><small class="card-text text-muted">by <%= link("@" <> ${payload.username}, to: user_path(@conn, :show, ${payload.user_id})) %></small></p>
-                <%= link "Read More", to: post_path(@conn, :show, ${payload.id}), class: "btn btn-info" %>
+                <p><small class="card-text text-muted">by <a href="/users/${payload.user_id}">@${payload.username}</a></small></p>
+                <a href="/posts/${payload.id}" class="btn btn-info">Read More</a>
             </div>
             <div class="card-footer"><small class="text-muted">Posted ${payload.inserted_at}</small></div>
         </div>
