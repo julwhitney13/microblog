@@ -53,10 +53,63 @@ let socket = new Socket("/socket", {params: {token: window.userToken}})
 
 socket.connect()
 
+
+// Referenced some tutorial info from the following blogs in creating this function:
+// https://medium.com/elixir-magic/writing-a-blog-engine-in-phoenix-and-elixir-part-9-live-comments-9269669a6941
+// http://learningelixir.joekain.com/pushing-model-changes-to-a-phoenix-channel/
+
+$(function() {
+    if (!$("#posts-feed").length > 0) {
+      // Wrong page.
+      return
+    }
+
+    let topic = (!$("#current_user_id").length > 0) ? "updates:all" : "updates:" + $("#current_user_id").val()
+    let channel = socket.channel(topic)
+
+    const createMessage = (payload) => `
+        <div id="post-${payload.id}" class="card text-center mb-3">
+            <div class="card-body">
+                <h4 class="card-title">${payload.title}</h4>
+                <p class="card-subtitle lead">${payload.description}</p>
+                <p><small class="card-text text-muted">by <a href="/users/${payload.user_id}">@${payload.username}</a></small></p>
+                <a href="/posts/${payload.id}" class="btn btn-info">Read More</a>
+            </div>
+            <div class="card-footer"><small class="text-muted">Posted ${payload.inserted_at}</small></div>
+        </div>
+    `
+    //  +
+    //  +channel.on("new_msg", payload => {
+    //  +  console.log('channel received new message', payload)
+    //  +  let messagesList = document.querySelector("#messages")
+    //  +
+    //  +  if (messagesList) {
+    //  +    let messageItem = buildMessageItem(payload);
+    //  +    messagesList.prepend(messageItem)
+    //  +  }
+    //  +})
+
+    channel.on("new_message_posted", payload => {
+        console.log(payload);
+        if ($(`#post-${payload.id}`).length === 0) {
+            console.log("new message posted?")
+            $("#posts-feed").before(
+            createMessage(payload)
+            )
+        }
+    })
+    // Join the topic
+    // let channel = socket.channel(topic, {})
+
+    channel.join()
+      .receive("ok", resp => { console.log("Joined successfully", resp) })
+      .receive("error", resp => { console.log("Unable to join", resp) })
+})
+
+
+
 // Now that you are connected, you can join channels with a topic:
-let channel = socket.channel("topic:subtopic", {})
-channel.join()
-  .receive("ok", resp => { console.log("Joined successfully", resp) })
-  .receive("error", resp => { console.log("Unable to join", resp) })
+// let channel = socket.channel("topic:subtopic", {})
+
 
 export default socket

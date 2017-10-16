@@ -118,17 +118,16 @@ defmodule Microblog.Accounts do
   end
 
 
+  alias Microblog.Accounts.Relationship
+
+
   # Referenced this blog post https://www.railstutorial.org/book/following_users for query help!
   def get_user_feed(%User{} = user) do
-      uid = user.id
-      Repo.preload(Repo.all(
-        from p in Microblog.Messages.Post,
-        where: p.user_id in fragment("SELECT receiver_id FROM relationships WHERE user_id = ?", ^uid)
-        or p.user_id == ^uid
-      ), :user)
+      following_ids = Repo.all(from r in Relationship, select: r.receiver_id, where: r.actor_id == ^user.id)
+      Repo.all(from p in Microblog.Messages.Post, where: p.user_id in ^following_ids or p.user_id == ^user.id, order_by: [desc: :updated_at])
+      |> Repo.preload(:user)
+      |> Repo.preload(:likes)
   end
-
-  alias Microblog.Accounts.Relationship
 
   @doc """
   Returns the list of relationships.
@@ -141,7 +140,8 @@ defmodule Microblog.Accounts do
   """
   def list_relationships do
     Repo.all(Relationship)
-    |> Repo.preload(:user)
+    |> Repo.preload(:actor)
+    |> Repo.preload(:receiver)
   end
 
   @doc """
@@ -160,22 +160,26 @@ defmodule Microblog.Accounts do
   """
   def get_relationship!(id) do
       Repo.get!(Relationship, id)
-      |> Repo.preload(:user)
+      |> Repo.preload(:actor)
+      |> Repo.preload(:receiver)
   end
 
   def get_relationship(actor_id, receiver_id) do
       Repo.get_by(Relationship, actor_id: actor_id, receiver_id: receiver_id)
-      |> Repo.preload(:user)
+      |> Repo.preload(:actor)
+      |> Repo.preload(:receiver)
   end
 
   def get_followers(user_id) do
-      Repo.get_by(Relationship, receiver_id: user_id)
-      |> Repo.preload(:user)
+    #   Repo.get_by(Relationship, receiver_id: user_id)
+      Repo.all(from r in Relationship, select: r.actor_id, where: r.receiver_id == ^user_id)
+    #   |> Enum.map(fn r -> r.actor_id end)
   end
 
   def get_following(user_id) do
       Repo.get_by(Relationship, actor_id: user_id)
-      |> Repo.preload(:user)
+      |> Repo.preload(:actor)
+      |> Repo.preload(:receiver)
   end
 
   def is_following?(actor_id, receiver_id) do
