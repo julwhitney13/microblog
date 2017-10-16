@@ -14,8 +14,8 @@
                 </div>
             </div>
             <div class="col-md-8">
-                <div id="posts-feed">
                 <h4>My Timeline</h4>
+                <div id="posts-feed">
                 <%= for post <- Microblog.Accounts.get_user_feed(@current_user) do %>
                     <div class="card text-center mb-3" id="post-<%= post.id %>">
                         <div class="card-body">
