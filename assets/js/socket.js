@@ -78,16 +78,6 @@ $(function() {
             <div class="card-footer"><small class="text-muted">Posted ${payload.inserted_at}</small></div>
         </div>
     `
-    //  +
-    //  +channel.on("new_msg", payload => {
-    //  +  console.log('channel received new message', payload)
-    //  +  let messagesList = document.querySelector("#messages")
-    //  +
-    //  +  if (messagesList) {
-    //  +    let messageItem = buildMessageItem(payload);
-    //  +    messagesList.prepend(messageItem)
-    //  +  }
-    //  +})
 
     channel.on("new_message_posted", payload => {
         console.log(payload);
