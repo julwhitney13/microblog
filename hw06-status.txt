@@ -22,21 +22,22 @@ http://microblog.sorryiateallyourpancakes.com/
 4. What's the link to the Travis CI build for the version of your app
    that you made a release of? You can find this on Travis under "Build History".
 
-
+https://travis-ci.org/kimception/microblog
+* Will update to be full link upon release & submission
 
 5. Did you successfully deploy? If not, what doesn't work?
 
-Yes
+Yes - everything works :~)
 
 6. Did you successfully implement live updates? If not, what doesn't work?
 
-Yes
+Yes!! I have updates:user_id working so it broadcasts to the channels of only their followers :)
 
 7. Did Prof. Tuck give you any alternate / additional goals for this assignment?
    If so, what were they and how well did you complete them with your submission?
 
-No
+Nope
 
 8. Is there any other useful information that you want to provide for grading?
 
-Nope!
+update:user_id works! and some tests pass :~)
