@@ -6,9 +6,9 @@ defmodule Microblog.MessagesTest do
   describe "posts" do
     alias Microblog.Messages.Post
 
-    @valid_attrs %{authorId: 42, content: "some content", description: "some description", hashtags: [], mentions: [], title: "some title"}
-    @update_attrs %{authorId: 43, content: "some updated content", description: "some updated description", hashtags: [], mentions: [], title: "some updated title"}
-    @invalid_attrs %{authorId: nil, content: nil, description: nil, hashtags: nil, mentions: nil, title: nil}
+    @valid_attrs %{content: "some content", description: "some description", hashtags: [], title: "some title"}
+    @update_attrs %{content: "some updated content", description: "some updated description", hashtags: [], title: "some updated title"}
+    @invalid_attrs %{content: nil, description: nil, hashtags: nil, title: nil}
 
     def post_fixture(attrs \\ %{}) do
       {:ok, post} =
@@ -31,11 +31,9 @@ defmodule Microblog.MessagesTest do
 
     test "create_post/1 with valid data creates a post" do
       assert {:ok, %Post{} = post} = Messages.create_post(@valid_attrs)
-      assert post.authorId == 42
       assert post.content == "some content"
       assert post.description == "some description"
       assert post.hashtags == []
-      assert post.mentions == []
       assert post.title == "some title"
     end
 
@@ -47,11 +45,9 @@ defmodule Microblog.MessagesTest do
       post = post_fixture()
       assert {:ok, post} = Messages.update_post(post, @update_attrs)
       assert %Post{} = post
-      assert post.authorId == 43
       assert post.content == "some updated content"
       assert post.description == "some updated description"
       assert post.hashtags == []
-      assert post.mentions == []
       assert post.title == "some updated title"
     end
 
