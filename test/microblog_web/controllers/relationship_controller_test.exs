@@ -12,20 +12,6 @@ defmodule MicroblogWeb.RelationshipControllerTest do
     relationship
   end
 
-  describe "index" do
-    test "lists all relationships", %{conn: conn} do
-      conn = get conn, relationship_path(conn, :index)
-      assert html_response(conn, 200) =~ "Listing Relationships"
-    end
-  end
-
-  describe "new relationship" do
-    test "renders form", %{conn: conn} do
-      conn = get conn, relationship_path(conn, :new)
-      assert html_response(conn, 200) =~ "New Relationship"
-    end
-  end
-
   describe "create relationship" do
     test "redirects to show when data is valid", %{conn: conn} do
       conn = post conn, relationship_path(conn, :create), relationship: @create_attrs
@@ -40,32 +26,6 @@ defmodule MicroblogWeb.RelationshipControllerTest do
     test "renders errors when data is invalid", %{conn: conn} do
       conn = post conn, relationship_path(conn, :create), relationship: @invalid_attrs
       assert html_response(conn, 200) =~ "New Relationship"
-    end
-  end
-
-  describe "edit relationship" do
-    setup [:create_relationship]
-
-    test "renders form for editing chosen relationship", %{conn: conn, relationship: relationship} do
-      conn = get conn, relationship_path(conn, :edit, relationship)
-      assert html_response(conn, 200) =~ "Edit Relationship"
-    end
-  end
-
-  describe "update relationship" do
-    setup [:create_relationship]
-
-    test "redirects when data is valid", %{conn: conn, relationship: relationship} do
-      conn = put conn, relationship_path(conn, :update, relationship), relationship: @update_attrs
-      assert redirected_to(conn) == relationship_path(conn, :show, relationship)
-
-      conn = get conn, relationship_path(conn, :show, relationship)
-      assert html_response(conn, 200)
-    end
-
-    test "renders errors when data is invalid", %{conn: conn, relationship: relationship} do
-      conn = put conn, relationship_path(conn, :update, relationship), relationship: @invalid_attrs
-      assert html_response(conn, 200) =~ "Edit Relationship"
     end
   end
 
