@@ -46,6 +46,8 @@ defmodule Microblog.Mixfile do
       {:decimal, "~> 1.0"},
       {:distillery, "~> 1.4"},
       {:navigation_history, "~> 0.0"},
+      {:comeonin, "~> 4.0"},
+      {:argon2_elixir, "~> 1.2"},
     ]
   end
 
