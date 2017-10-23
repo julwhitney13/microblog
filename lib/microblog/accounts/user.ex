@@ -2,7 +2,7 @@ defmodule Microblog.Accounts.User do
   use Ecto.Schema
   import Ecto.Changeset
   alias Microblog.Accounts.User
-
+  alias Microblog.Propic
 
   schema "users" do
     field :email, :string
