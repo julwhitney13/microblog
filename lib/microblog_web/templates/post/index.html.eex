@@ -4,7 +4,7 @@
             <input type="hidden" id="current_user_id" value="<%= @current_user.id %>">
             <div class="col-md-4">
                 <div class="card text-center">
-                    <img class="img-fluid img-rounded" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Blank_woman_placeholder.svg/2000px-Blank_woman_placeholder.svg.png" alt="me">
+                    <img src="<%= Microblog.Propic.url({@current_user.propic, @current_user}, :original)%>" alt="Profile Picture" class="img-fluid img-rounded" />
                     <div class="card-body text-center">
                         <h5 class="card-title"><%= @current_user.firstname %> <%= @current_user.lastname %></h5>
                         <p class="card-title"><%= link("@" <> @current_user.username, to: user_path(@conn, :show, @current_user)) %></p>
