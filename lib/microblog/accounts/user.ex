@@ -19,6 +19,8 @@ defmodule Microblog.Accounts.User do
     field :password, :string, virtual: true
     field :password_confirmation, :string, virtual: true
 
+    field :is_admin?, :boolean
+
     field :propic, Microblog.Propic.Type
 
     has_many :posts, Microblog.Messages.Post
@@ -32,7 +34,7 @@ defmodule Microblog.Accounts.User do
   @doc false
   def changeset(%User{} = user, attrs) do
     user
-    |> cast(attrs, [:firstname, :lastname, :username, :email, :description, :password, :password_confirmation])
+    |> cast(attrs, [:firstname, :lastname, :username, :email, :description, :password, :password_confirmation, :is_admin?])
     |> cast_attachments(attrs, [:propic])
     |> validate_confirmation(:password)
     |> validate_password(:password)
