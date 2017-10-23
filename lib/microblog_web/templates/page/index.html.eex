@@ -4,7 +4,7 @@
 </div>
 
 <%= if @current_user do %>
-    <%= render MicroblogWeb.PostView, "index.html", conn: @conn %>
+    <%= render MicroblogWeb.PostView, "index.html", conn: @conn, user: @current_user %>
 <% else %>
 
 <div class="container my-5">
