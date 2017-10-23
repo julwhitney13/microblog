@@ -31,6 +31,7 @@ defmodule Microblog.Propic do
 
   def storage_dir(_version, {_file, scope}) do
     Application.get_env(:arc, :storage_dir) <> "uploads/#{scope.id}"
+  end
 
   # Provide a default URL if there hasn't been a file uploaded
   def default_url(version, scope) do
