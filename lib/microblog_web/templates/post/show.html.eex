@@ -32,7 +32,7 @@
                         <%= if @current_user.id == @post.user.id or Microblog.Accounts.is_admin?(@current_user) do %>
                         <div class="border-info card-footer text-muted">
                             <span><%= link "Edit Post", to: post_path(@conn, :edit, @current_user), class: "btn btn-info" %></span>
-                            <span><%= link "Delete Post", to: post_path(@conn, :delete, @post.id), class: "btn btn-primary" %></span>
+                            <span><%= link "Delete Post", to: post_path(@conn, :delete, @post), class: "btn btn-primary" %></span>
                         </div>
                         <% end %>
                     <% end %>
