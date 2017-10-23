@@ -8,11 +8,7 @@
                   <p>Oops, something went wrong! Please check the errors below.</p>
                 </div>
               <% end %>
-
-              <%= if @current_user && @current_user.username == "admin" do %>
-                <%= hidden_input f, :is_admin?, value: true %>
-              <% end %>
-
+              
               <div class="form-group">
                 <%= label f, :firstname, "First name", class: "control-label" %>
                 <%= text_input f, :firstname, class: "form-control" %>

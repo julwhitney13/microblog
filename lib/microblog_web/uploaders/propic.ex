@@ -33,7 +33,7 @@ defmodule Microblog.Propic do
   def storage_dir(_version, {_file, scope}) do
     # Application.get_env(:arc, :storage_dir) <> "uploads/#{scope.id}"
     if Application.get_env(:microblog, :environment) == :prod do
-        Application.app_dir(:microblog, "priv") <> "/static/images/propics/#{scope.id}"
+        "priv/static/propics/"
     else
         "uploads/"
     end
