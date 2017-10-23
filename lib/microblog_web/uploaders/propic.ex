@@ -25,12 +25,12 @@ defmodule Microblog.Propic do
 
   # Override the storage directory:
   def storage_dir(version, {file, scope}) do
-    "assets/images/propics/#{scope.id}"
+    Application.get_env(:arc, :storage_dir) <> "assets/images/propics/#{scope.id}"
   end
 
   # Provide a default URL if there hasn't been a file uploaded
   def default_url(version, scope) do
-    "assets/images/propics/default.png"
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Blank_woman_placeholder.svg/2000px-Blank_woman_placeholder.svg.png"
   end
 
   # Specify custom headers for s3 objects

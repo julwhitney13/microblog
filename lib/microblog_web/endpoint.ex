@@ -12,9 +12,6 @@ defmodule MicroblogWeb.Endpoint do
     only: ~w(css fonts images js favicon.ico robots.txt)
 
   plug Plug.Static,
-    at: "/uploads", from: Path.expand('./uploads'), gzip: false
-    
-  plug Plug.Static,
     at: "propics/", from: "assets/images/propics/", gzip: false
 
 
