@@ -29,6 +29,9 @@ defmodule Microblog.Propic do
   #   "priv/static/images/propics/"
   # end
 
+  def storage_dir(_version, {_file, scope}) do
+    Application.get_env(:arc, :storage_dir) <> "uploads/#{scope.id}"
+
   # Provide a default URL if there hasn't been a file uploaded
   def default_url(version, scope) do
     "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Blank_woman_placeholder.svg/2000px-Blank_woman_placeholder.svg.png"
