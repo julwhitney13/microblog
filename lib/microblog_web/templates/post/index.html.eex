@@ -30,8 +30,8 @@
                 <%= if length(Microblog.Accounts.get_user_feed(@current_user)) == 0 do %>
                     <div class="card text-center mb-3">
                         <div class="card-body">
-                            <p>The people you follow haven't posted anything yet!</p>
-                            <%= link "Find more users", to: user_path(@conn, :index), class: "btn btn-info mt-5" %>
+                            <h6>The people you follow haven't posted anything yet!</h6>
+                            <%= link "Find more users", to: user_path(@conn, :index), class: "btn btn-primary mt-5" %><br>
                             <%= link "Or create a post yourself!", to: post_path(@conn, :new), class: "btn btn-success mt-5" %>
                         </div>
                     </div>
