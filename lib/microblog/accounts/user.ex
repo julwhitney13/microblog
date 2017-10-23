@@ -1,5 +1,6 @@
 defmodule Microblog.Accounts.User do
   use Ecto.Schema
+  use Arc.Ecto.Schema
   import Ecto.Changeset
   alias Microblog.Accounts.User
   alias Microblog.Propic
@@ -32,7 +33,7 @@ defmodule Microblog.Accounts.User do
   def changeset(%User{} = user, attrs) do
     user
     |> cast(attrs, [:firstname, :lastname, :username, :email, :description, :password, :password_confirmation])
-    |> cast_attachments(params, [:photo])
+    |> cast_attachments(attrs, [:photo])
     |> validate_confirmation(:password)
     |> validate_password(:password)
     |> put_pass_hash()
