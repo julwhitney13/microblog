@@ -20,7 +20,7 @@ defmodule Microblog.Mixfile do
   def application do
     [
       mod: {Microblog.Application, []},
-      extra_applications: [:arc_ecto, :logger, :runtime_tools]
+      extra_applications: [:arc_ecto, :logger, :runtime_tools, :pandex]
     ]
   end
 
@@ -48,6 +48,7 @@ defmodule Microblog.Mixfile do
       {:navigation_history, "~> 0.0"},
       {:comeonin, "~> 4.0"},
       {:argon2_elixir, "~> 1.2"},
+      {:pandex, "~> 0.1.0"},
     ]
   end
 
