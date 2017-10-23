@@ -6,7 +6,8 @@ defmodule Microblog.Propic do
 
   def __storage, do: Arc.Storage.Local
 
-  @versions [:original, :thumb]
+  # @versions [:original, :thumb]
+  @versions [:original]
 
   # Whitelist file extensions:
   def validate({file, _}) do
@@ -14,9 +15,9 @@ defmodule Microblog.Propic do
   end
 
   # Define a thumbnail transformation:
-  def transform(:thumb, _) do
-    {:convert, "-strip -thumbnail 250x250^ -gravity center -extent 250x250 -format png", :png}
-  end
+  # def transform(:thumb, _) do
+  #   {:convert, "-strip -thumbnail 250x250^ -gravity center -extent 250x250 -format png", :png}
+  # end
 
   # Override the persisted filenames:
   def filename(version, {file, scope}) do
