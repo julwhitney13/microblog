@@ -25,7 +25,7 @@ defmodule Microblog.Propic do
 
   # Override the storage directory:
   def storage_dir(version, {file, scope}) do
-    Application.get_env(:arc, :storage_dir) <> "assets/images/propics/#{scope.id}"
+    Application.fetch_env!(:arc, :storage_dir) <> "assets/images/propics/#{scope.id}"
   end
 
   # Provide a default URL if there hasn't been a file uploaded
