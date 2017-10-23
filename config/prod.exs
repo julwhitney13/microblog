@@ -17,20 +17,7 @@ config :microblog, MicroblogWeb.Endpoint,
   load_from_system_env: true,
   url: [host: "microblog.sorryiateallyourpancakes.com", port: 8000],
   server: true,
-  cache_static_manifest: "priv/static/cache_manifest.json",
-  watchers: [node: ["node_modules/brunch/bin/brunch", "watch", "--stdin",
-                    cd: Path.expand("../assets", __DIR__)]]
-
-config :microblog, MicroblogWeb.Endpoint,
-  live_reload: [
-    patterns: [
-      ~r{priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$},
-      ~r{uploads/.*(js|css|png|jpeg|jpg|gif|svg)$},
-      ~r{priv/gettext/.*(po)$},
-      ~r{lib/microblog_web/views/.*(ex)$},
-      ~r{lib/microblog_web/templates/.*(eex)$}
-    ]
-  ]
+  cache_static_manifest: "priv/static/cache_manifest.json"
 
 
 # Do not print debug messages in production
