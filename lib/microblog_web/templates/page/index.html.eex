@@ -4,7 +4,7 @@
 </div>
 
 <%= if @current_user do %>
-    <%= render "index.html", post_path(@conn, :index) %>
+    <%= render "index.html", Map.put(assigns, :action, post_path(@conn, :index)) %>
 <% else %>
 
 <div class="container my-5">
