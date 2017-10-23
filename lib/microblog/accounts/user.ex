@@ -31,12 +31,11 @@ defmodule Microblog.Accounts.User do
   @doc false
   def changeset(%User{} = user, attrs) do
     user
-    |> cast(attrs, [:firstname, :lastname, :username, :email, :description, :password, :password_confirmation])
-    |> cast_attachments(attrs, [:propic])
+    |> cast(attrs, [:firstname, :lastname, :username, :email, :description, :password, :password_confirmation, :propic])
     |> validate_confirmation(:password)
     |> validate_password(:password)
     |> put_pass_hash()
-    |> validate_required([:firstname, :lastname, :username, :email, :description, :password_hash])
+    |> validate_required([:firstname, :lastname, :username, :email, :description, :password_hash, :propic])
   end
 
     # Password validation
