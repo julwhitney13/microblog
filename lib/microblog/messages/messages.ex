@@ -19,7 +19,7 @@ defmodule Microblog.Messages do
   """
   def convert_md_to_html(string)  do
       {:ok, output} = markdown_to_html string
-      IO.puts output
+      output
   end
 
   def list_posts do
