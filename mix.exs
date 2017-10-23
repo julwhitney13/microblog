@@ -20,8 +20,7 @@ defmodule Microblog.Mixfile do
   def application do
     [
       mod: {Microblog.Application, []},
-      applications: [:arc_ecto],
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:arc_ecto, :logger, :runtime_tools]
     ]
   end
 
