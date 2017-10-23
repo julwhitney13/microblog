@@ -1,7 +1,4 @@
 <div class="container my-5">
-    <div class="row mb-3">
-        <h1>Create a new account</h1>
-    </div>
     <div class="row">
         <div class="col-md-6">
 
@@ -43,7 +40,7 @@
               </div>
 
               <div class="form-group">
-                  <%= label f, :propic, class: "control-label" %>
+                  <%= label f, :propic, "Profile picture", class: "control-label" %>
                   <%= file_input f, :propic, class: "form-control" %>
                   <%= error_tag f, :propic %>
               </div>
@@ -55,7 +52,7 @@
               </div>
 
               <div class="form-group">
-                <%= label f, :password_confirmation, class: "control-label" %>
+                <%= label f, :password_confirmation, "Retype your password", class: "control-label" %>
                 <%= password_input f, :password_confirmation, class: "form-control" %>
                 <%= error_tag f, :password_confirmation %>
               </div>
