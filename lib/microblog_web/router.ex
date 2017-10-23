@@ -36,6 +36,7 @@ defmodule MicroblogWeb.Router do
   scope "/api", MicroblogWeb do
     pipe_through :api
     # resources "/likes", LikeController, except: [:new, :edit]
+    delete "/posts", PostController, :delete
     resources "/likes", LikeController, except: [:new, :edit, :delete]
     delete "/likes", LikeController, :delete
   end
