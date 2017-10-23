@@ -17,7 +17,7 @@
     <div class="container">
         <header class="header">
             <nav class="navbar navbar-light bg-faded navbar-expand-md">
-                <a class="navbar-brand" href="#">Microblog</a>
+                <%= link "Microblog", to: page_path(@conn, :index), class: "navbar-brand" %>
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar">
                     <span class="navbar-toggler-icon"></span>
