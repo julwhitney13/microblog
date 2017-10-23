@@ -10,10 +10,10 @@ defmodule MicroblogWeb.Endpoint do
 
   plug Plug.Static,
     at: "/", from: :microblog, gzip: (Mix.env == :prod),
-    only: ~w(css fonts images js favicon.ico robots.txt)
+    only: ~w(css fonts images js propics favicon.ico robots.txt)
 
-  plug Plug.Static,
-      at: "/uploads", from: Path.expand("./uploads"), gzip: (Mix.env == :prod)
+  # plug Plug.Static,
+  #     at: "/uploads", from: Path.expand("./uploads"), gzip: (Mix.env == :prod)
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
