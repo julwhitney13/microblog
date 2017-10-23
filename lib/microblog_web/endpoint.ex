@@ -8,7 +8,7 @@ defmodule MicroblogWeb.Endpoint do
   # You should set gzip to true if you are running phoenix.digest
   # when deploying your static files in production.
   #
-  # plug Plug.Static, at: "/propics", from: Path.expand("./propics"), gzip: false
+  plug Plug.Static, at: "/uploads", from: Path.expand("./uploads"), gzip: false
 
   plug Plug.Static,
     at: "/", from: :microblog, gzip: false,
