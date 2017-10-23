@@ -33,7 +33,7 @@ defmodule Microblog.Accounts.User do
   def changeset(%User{} = user, attrs) do
     user
     |> cast(attrs, [:firstname, :lastname, :username, :email, :description, :password, :password_confirmation])
-    |> cast_attachments(attrs, [:photo])
+    |> cast_attachments(attrs, [:propic])
     |> validate_confirmation(:password)
     |> validate_password(:password)
     |> put_pass_hash()

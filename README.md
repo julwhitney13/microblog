@@ -25,7 +25,7 @@ From server, in the source directory, run './deploy.sh </output/dir/for/deploy>'
 - A few stack overflow posts and ajax docs were referenced in figuring out how to change the like button, but none were even close to what I ended up implementing on my own
 - Referenced for channel sockets https://medium.com/elixir-magic/writing-a-blog-engine-in-phoenix-and-elixir-part-9-live-comments-9269669a6941
 - Also referenced for channel sockets http://learningelixir.joekain.com/pushing-model-changes-to-a-phoenix-channel/
-
+- Referenced portions of adding photo uploads to the app from this blog post https://medium.com/@Stephanbv/elixir-phoenix-uploading-images-locally-with-arc-b1d5ec88f7a
 
 
 # Microblog
