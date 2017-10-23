@@ -25,12 +25,12 @@ defmodule Microblog.Propic do
 
   # Override the storage directory:
   def storage_dir(version, {file, scope}) do
-    "priv/static/images/propics/#{scope.id}"
+    "/assets/images/propics/#{scope.id}"
   end
 
   # Provide a default URL if there hasn't been a file uploaded
   def default_url(version, scope) do
-    "priv/static/images/propics/default.png"
+    "/assets/images/propics/default.png"
   end
 
   # Specify custom headers for s3 objects
