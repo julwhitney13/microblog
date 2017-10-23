@@ -4,7 +4,7 @@
 </div>
 
 <%= if @current_user do %>
-    <%= render "index.html", Map.put(assigns, :action, post_path(@conn, :index)) %>
+    <%= render Microblog.PostView, "index.html", conn: @conn %>
 <% else %>
 
 <div class="container my-5">
