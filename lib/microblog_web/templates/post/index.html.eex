@@ -27,7 +27,7 @@
                         <div class="card-footer"><small class="text-muted">Posted <%= post.inserted_at %></small></div>
                     </div>
                 <% end %>
-                <%= if length(@posts) == 0 do %>
+                <%= if length(Microblog.Accounts.get_user_feed(@current_user)) == 0 do %>
                     <div class="card text-center mb-3">
                         <div class="card-body">
                             <p>The people you follow haven't posted anything yet!</p>
