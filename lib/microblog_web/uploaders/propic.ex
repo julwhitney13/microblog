@@ -23,10 +23,10 @@ defmodule Microblog.Propic do
     "#{version}_#{file.file_name}"
   end
 
-  # Override the storage directory:
-  def storage_dir(version, {file, scope}) do
-    "uploads/#{scope.id}"
-  end
+  # # Override the storage directory:
+  # def storage_dir(version, {file, scope}) do
+  #   "uploads/"
+  # end
 
   # Provide a default URL if there hasn't been a file uploaded
   def default_url(version, scope) do
