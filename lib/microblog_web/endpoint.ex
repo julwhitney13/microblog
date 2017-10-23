@@ -9,7 +9,7 @@ defmodule MicroblogWeb.Endpoint do
   # when deploying your static files in production.
   plug Plug.Static,
     at: "/", from: :microblog, gzip: false,
-    only: ~w(css fonts images js propics favicon.ico robots.txt)
+    only: ~w(css fonts images js favicon.ico robots.txt)
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
@@ -21,6 +21,9 @@ defmodule MicroblogWeb.Endpoint do
 
   plug Plug.RequestId
   plug Plug.Logger
+
+  plug Plug.Static,
+    at: "propics/", from: "assets/images/propics/", gzip: false
 
   plug Plug.Parsers,
     parsers: [:urlencoded, :multipart, :json],
