@@ -19,7 +19,7 @@ defmodule Microblog.Propic do
   end
 
   # Override the persisted filenames:
-  def filename(version, _) do
+  def filename(version, {file, scope}) do
     "#{scope.id}_#{version}_#{file.file_name}"
   end
 
