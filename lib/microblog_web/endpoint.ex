@@ -9,10 +9,10 @@ defmodule MicroblogWeb.Endpoint do
   # when deploying your static files in production.
 
   plug Plug.Static, at: "/uploads", from: Path.expand("./uploads"), gzip: false
-  
+
   plug Plug.Static,
     at: "/", from: :microblog, gzip: false,
-    only: ~w(css fonts images js favicon.ico robots.txt)
+    only: ~w(css fonts images propics uploads js favicon.ico robots.txt)
 
   plug Plug.Static,
     at: "propics/", from: "assets/images/propics/", gzip: false
