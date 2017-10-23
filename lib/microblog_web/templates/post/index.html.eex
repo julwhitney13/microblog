@@ -31,8 +31,8 @@
                     <div class="card text-center mb-3">
                         <div class="card-body">
                             <h6>The people you follow haven't posted anything yet!</h6>
-                            <%= link "Find more users", to: user_path(@conn, :index), class: "btn btn-primary mt-5" %><br>
-                            <%= link "Or create a post yourself!", to: post_path(@conn, :new), class: "btn btn-success mt-5" %>
+                            <p><%= link "Find more users", to: user_path(@conn, :index), class: "btn btn-primary mt-2" %></p>
+                            <p><%= link "Or create a post yourself!", to: post_path(@conn, :new), class: "btn btn-success mt-2" %></p>
                         </div>
                     </div>
                 <% end %>
