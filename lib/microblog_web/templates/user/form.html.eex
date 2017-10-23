@@ -43,6 +43,12 @@
               </div>
 
               <div class="form-group">
+                  <%= label f, :propic, class: "control-label" %>
+                  <%= file_input f, :propic, class: "form-control" %>
+                  <%= error_tag f, :propic %>
+              </div>
+
+              <div class="form-group">
                 <%= label f, :password, class: "control-label" %>
                 <%= password_input f, :password, class: "form-control" %>
                 <%= error_tag f, :password %>
