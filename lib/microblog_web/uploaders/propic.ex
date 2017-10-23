@@ -1,4 +1,5 @@
 defmodule Microblog.Propic do
+  use Phoenix.Endpoint, otp_app: :microblog
   use Arc.Definition
 
   # Include ecto support (requires package arc_ecto installed):
