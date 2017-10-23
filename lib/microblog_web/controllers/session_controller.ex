@@ -15,24 +15,23 @@ defmodule MicroblogWeb.SessionController do
     # Function referenced from NuMart by Nat Tuck https://github.com/NatTuck/nu_mart
     def throttle_attempts(user) do
         if user do
-            return nil
-        end
-        y2k = DateTime.from_naive!(~N[2000-01-01 00:00:00], "Etc/UTC")
-        prv = DateTime.to_unix(user.pw_last_try || y2k)
-        now = DateTime.to_unix(DateTime.utc_now())
-        thr = (now - prv) < 3600
+            y2k = DateTime.from_naive!(~N[2000-01-01 00:00:00], "Etc/UTC")
+            prv = DateTime.to_unix(user.pw_last_try || y2k)
+            now = DateTime.to_unix(DateTime.utc_now())
+            thr = (now - prv) < 3600
 
-        if (thr && user.pw_tries > 5) do
-            nil
-        else
-            changes = %{
-                pw_tries: update_tries(thr, user.pw_tries),
-                pw_last_try: DateTime.utc_now(),
-            }
-            IO.inspect(user)
-            {:ok, user} = Ecto.Changeset.cast(user, changes, [:pw_tries, :pw_last_try])
-            |> Microblog.Repo.update
-            user
+            if (thr && user.pw_tries > 5) do
+                nil
+            else
+                changes = %{
+                    pw_tries: update_tries(thr, user.pw_tries),
+                    pw_last_try: DateTime.utc_now(),
+                }
+                IO.inspect(user)
+                {:ok, user} = Ecto.Changeset.cast(user, changes, [:pw_tries, :pw_last_try])
+                |> Microblog.Repo.update
+                user
+            end
         end
     end
 
