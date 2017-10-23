@@ -23,10 +23,10 @@ defmodule Microblog.Propic do
     version
   end
 
-  # Override the storage directory:
-  def storage_dir(version, {file, scope}) do
-    Application.fetch_env!(:arc, :storage_dir) <> "assets/images/propics/#{scope.id}"
-  end
+  # # Override the storage directory:
+  # def storage_dir(version, {file, scope}) do
+  #   Application.fetch_env!(:arc, :storage_dir) <> "assets/images/propics/#{scope.id}"
+  # end
 
   # Provide a default URL if there hasn't been a file uploaded
   def default_url(version, scope) do
