@@ -23,6 +23,8 @@ config :microblog, MicroblogWeb.Endpoint,
 # Do not print debug messages in production
 config :logger, level: :info
 
+config :microblog, :environment, :prod
+
 # ## SSL Support
 #
 # To get SSL working, you will need to add the `https` key
