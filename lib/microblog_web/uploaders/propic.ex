@@ -29,21 +29,15 @@ defmodule Microblog.Propic do
   # def storage_dir(version, {file, scope}) do
   #   "priv/static/images/propics/"
   # end
-Microblog.Propic.url({@user.propic, @user}, :original)
-  def url_path(user) do
-      one = String.split(Propic.url({user.propic, user}, :original), "/")
-      len = length(one)
-      "/propics/" <> Enum.at(one, len - 1) 
-  end
 
-  def storage_dir(_version, {_file, scope}) do
-    # Application.get_env(:arc, :storage_dir) <> "uploads/#{scope.id}"
-    if Application.get_env(:microblog, :environment) == :prod do
-        "priv/static/propics/"
-    else
-        "uploads/"
-    end
-  end
+  # def storage_dir(_version, {_file, scope}) do
+  #   # Application.get_env(:arc, :storage_dir) <> "uploads/#{scope.id}"
+  #   if Application.get_env(:microblog, :environment) == :prod do
+  #       "priv/static/propics/"
+  #   else
+  #       "uploads/"
+  #   end
+  # end
 
   # Provide a default URL if there hasn't been a file uploaded
   def default_url(version, scope) do
