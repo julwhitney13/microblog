@@ -38,8 +38,10 @@ defmodule Microblog.Accounts.User do
     |> validate_required([:firstname, :lastname, :username, :email, :description, :password_hash, :propic])
   end
 
+
     # Password validation
     # From Comeonin docs
+    # These functions were also referenced from NuMart by Nat Tuck https://github.com/NatTuck/nu_mart
     def validate_password(changeset, field, options \\ []) do
       validate_change(changeset, field, fn _, password ->
         case valid_password?(password) do

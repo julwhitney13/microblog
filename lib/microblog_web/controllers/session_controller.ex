@@ -3,6 +3,7 @@ defmodule MicroblogWeb.SessionController do
 
     alias Microblog.Accounts
 
+    # Function referenced from NuMart by Nat Tuck https://github.com/NatTuck/nu_mart
     def update_tries(throttle, prev) do
         if throttle do
             prev + 1
@@ -11,6 +12,7 @@ defmodule MicroblogWeb.SessionController do
         end
     end
 
+    # Function referenced from NuMart by Nat Tuck https://github.com/NatTuck/nu_mart
     def throttle_attempts(user) do
         y2k = DateTime.from_naive!(~N[2000-01-01 00:00:00], "Etc/UTC")
         prv = DateTime.to_unix(user.pw_last_try || y2k)
@@ -31,6 +33,7 @@ defmodule MicroblogWeb.SessionController do
         end
     end
 
+    # Function referenced from NuMart by Nat Tuck https://github.com/NatTuck/nu_mart
     def get_and_auth_user(email, password) do
         user = Accounts.get_user_by_email(email)
         user = throttle_attempts(user)
