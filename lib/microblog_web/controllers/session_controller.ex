@@ -14,6 +14,9 @@ defmodule MicroblogWeb.SessionController do
 
     # Function referenced from NuMart by Nat Tuck https://github.com/NatTuck/nu_mart
     def throttle_attempts(user) do
+        if user do
+            return nil
+        end
         y2k = DateTime.from_naive!(~N[2000-01-01 00:00:00], "Etc/UTC")
         prv = DateTime.to_unix(user.pw_last_try || y2k)
         now = DateTime.to_unix(DateTime.utc_now())
