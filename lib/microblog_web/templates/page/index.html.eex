@@ -10,15 +10,15 @@
 <div class="container my-5">
     <div class="row">
         <div class="col-md-3"></div>
-        <div class="col-md-5">
+        <div class="col-md-6">
             <div class="card text-center mb-3">
                 <div class="card-body">
                     <h4 class="card-title text-center">Log in</h4>
                     <p class="card-subtitle lead text-center">Log in here using your email and password</p>
                     <%= form_for @conn, session_path(@conn, :login), [as: "user"], fn f -> %>
-                    <input type="text" placeholder="email" class="form-control" name="email">
-                    <input type="password" placeholder="password" class="form-control" name="password">
-                    <input type="submit" value="Log in" class="btn btn-info">
+                    <input type="text" placeholder="email" class="form-control mt-2" name="email">
+                    <input type="password" placeholder="password" class="form-control mt-2" name="password">
+                    <input type="submit" value="Log in" class="btn btn-info mt-2">
                     <% end %>
                 </div>
             </div>
