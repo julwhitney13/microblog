@@ -1,0 +1,84 @@
+CS4550 Web Dev, Fall 2017.
+
+HW06 status report form.
+
+Please answer the following questions and submit the filled-in file to Bottlenose.
+
+
+1. What's your name?
+Kimberly Whitney
+
+2. What's the link to your Github repo's releases page?
+https://github.com/kimception/microblog/releases
+
+3. What's the link to your deployed Microblog app?
+https://microblog.sorryiateallyourpancakes.com/
+
+4. Did you successfully deploy? If not, what doesn't work?
+Yes! Everything works
+
+5. Did you successfully implement passwords securely? If not, what doesn't work?
+Yep! Everything works
+
+6. Did you successfully implement admin users? What paths are admin-only? What paths
+   are accessible to all users.
+Yep!
+Admins can edit other users' posts (however, the author will change to them
+since it's sneaky to not)
+Admins can delete posts
+Admins can edit other users' profiles
+Admin login info on prod:
+email: admin@example.com
+password: admin1234
+
+7. What changes did you make to clean up your application layout and navigation?
+I added a landing page for log in / create account
+If you go to the landing page and are logged in, your feed is rendered
+I added a create post button from a user's feed
+I added a delete post button from /show post
+
+
+8. Did you complete any catch up tasks? Which ones? Is there anything still not working
+   about those features?
+All of my catchup tasks were already completed on previous assignments.
+
+9. Did you complete any additional tasks? Which ones? For each, describe how it should
+   work and how that differs from your deployed functionality.
+0. Follows are working, and a user's feed is showing in order
+- Now, in a user's feed, they only see posts of the people they follow
+- These are showed from most recent to least
+- If no posts are in their feed, it recommends following more users
+1. Added LetsEncrypt - site is now HTTPS
+2. Added markdown support to posts. A user can put markdown text in their
+post's content when created it and the /post show will render it as html
+3. Added profile picture uploads.
+- Nat Tuck approved not having to have this working in production
+-- https://piazza.com/class/j61milf8rku5pe?cid=265
+- Find video of it working in dev on my github here:
+-- https://github.com/kimception/microblog/blob/master/LocallyWorkingUploads.mov
+- A user can upload a profile picture and have it displayed!
+- Currently, on prod, it either shows the default photo or alt text
+4. Updated CSS / Bootstrap to make my site prettier
+- Landing page is optimized with a nice banner
+- Most things are displayed in cards
+- Common color scheme throughout site
+- Lots of great spacing/margins
+5. Added a "share to twitter" button on the bottom of every /post show
+- Any user can click it to share the link of the blog post to twitter!
+
+A. Did you complete any bonus addtional goals for extra credit? For each, describe how
+   it should work and how that differs from your deployed functionality.
+4 & 5 above:
+4. Updated CSS / Bootstrap to make my site prettier
+   - Landing page is optimized with a nice banner
+   - Most things are displayed in cards
+   - Common color scheme throughout site
+   - Lots of great spacing/margins
+5. Added a "share to twitter" button on the bottom of every /post show
+    - Any user can click it to share the link of the blog post to twitter!
+
+B. Is there any other useful information that you want to provide for grading?
+All previous users created without passwords can no longer be accessed
+Create a new account or log in via my admin creds:
+email: admin@example.com
+password: admin1234
