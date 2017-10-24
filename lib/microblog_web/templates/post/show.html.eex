@@ -6,7 +6,7 @@
                     <div class="card-header border-info text-muted mb-3">Posted <%= @post.inserted_at %></div>
                     <h1 class="card-title"><%= @post.title %></h1>
                     <p class="card-text text-muted">by <%= link("@" <> @post.user.username, to: user_path(@conn, :show, @post.user)) %></p>
-                    <p class="card-text text-left" style="white-space: pre-line"><%= Microblog.Messages.convert_md_to_html(@post.content)%></p>
+                    <p class="card-text text-left" style="white-space: pre-line"><<%= raw(Microblog.Messages.convert_md_to_html(@post.content))%></p>
                     <div class="border-info card-footer">
 
                     <div id="post-likes" data-path="<%= like_path(@conn, :index) %>" data-post_id="<%= @post.id %>"> &nbsp;</div>
