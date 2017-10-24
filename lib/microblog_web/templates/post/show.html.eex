@@ -36,6 +36,9 @@
                         </div>
                         <% end %>
                     <% end %>
+                    <div class="border-info card-footer text-muted">
+                        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="Check out this post! " data-hashtags="microblogger" data-lang="en" data-show-count="false">Tweet this post</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+                    </div>
                 </div>
             </div>
         </div>
