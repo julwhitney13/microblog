@@ -4,7 +4,7 @@
             <input type="hidden" id="current_user_id" value="<%= @current_user.id %>">
             <div class="col-md-4">
                 <div class="card text-center">
-                    <img class="img-fluid img-rounded" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Blank_woman_placeholder.svg/2000px-Blank_woman_placeholder.svg.png" alt="me">
+                    <img src="<%= Microblog.Propic.url({@current_user.propic, @current_user}, :original)%>" alt="Profile Picture" class="img-fluid img-rounded" />
                     <div class="card-body text-center">
                         <h5 class="card-title"><%= @current_user.firstname %> <%= @current_user.lastname %></h5>
                         <p class="card-title"><%= link("@" <> @current_user.username, to: user_path(@conn, :show, @current_user)) %></p>
@@ -25,6 +25,16 @@
                             <%= link "Read More", to: post_path(@conn, :show, post), class: "btn btn-info" %>
                         </div>
                         <div class="card-footer"><small class="text-muted">Posted <%= post.inserted_at %></small></div>
+                    </div>
+                <% end %>
+                <%= if length(Microblog.Accounts.get_user_feed(@current_user)) == 0 do %>
+                    <div class="card text-center mb-3">
+                        <div class="card-body">
+                            <h6>The people you follow haven't posted anything yet!</h6>
+                            <p><%= link "Find more users", to: user_path(@conn, :index), class: "btn btn-primary mt-3" %></p>
+                            <p class="text-center">or</p>
+                            <p><%= link "Create a post yourself!", to: post_path(@conn, :new), class: "btn btn-success" %></p>
+                        </div>
                     </div>
                 <% end %>
                 </div>

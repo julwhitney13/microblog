@@ -14,6 +14,7 @@ config :microblog, MicroblogWeb.Endpoint,
   watchers: [node: ["node_modules/brunch/bin/brunch", "watch", "--stdin",
                     cd: Path.expand("../assets", __DIR__)]]
 
+config :microblog, :environment, :prod
 # ## SSL Support
 #
 # In order to use HTTPS in development, a self-signed

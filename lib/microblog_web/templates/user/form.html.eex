@@ -1,17 +1,14 @@
 <div class="container my-5">
-    <div class="row mb-3">
-        <h1>Create a new account</h1>
-    </div>
     <div class="row">
         <div class="col-md-6">
 
-            <%= form_for @changeset, @action, fn f -> %>
+            <%= form_for @changeset, @action, [multipart: true], fn f -> %>
               <%= if @changeset.action do %>
                 <div class="alert alert-danger">
                   <p>Oops, something went wrong! Please check the errors below.</p>
                 </div>
               <% end %>
-
+              
               <div class="form-group">
                 <%= label f, :firstname, "First name", class: "control-label" %>
                 <%= text_input f, :firstname, class: "form-control" %>
@@ -40,6 +37,24 @@
                 <%= label f, :description, class: "control-label" %>
                 <%= text_input f, :description, class: "form-control" %>
                 <%= error_tag f, :description %>
+              </div>
+
+              <div class="form-group">
+                  <%= label f, :propic, "Profile picture", class: "control-label" %>
+                  <%= file_input f, :propic, class: "form-control" %>
+                  <%= error_tag f, :propic %>
+              </div>
+
+              <div class="form-group">
+                <%= label f, :password, class: "control-label" %>
+                <%= password_input f, :password, class: "form-control" %>
+                <%= error_tag f, :password %>
+              </div>
+
+              <div class="form-group">
+                <%= label f, :password_confirmation, "Retype your password", class: "control-label" %>
+                <%= password_input f, :password_confirmation, class: "form-control" %>
+                <%= error_tag f, :password_confirmation %>
               </div>
 
               <div class="form-group">

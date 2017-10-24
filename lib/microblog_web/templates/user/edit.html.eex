@@ -1,3 +1,6 @@
+<div class="row mb-3">
+    <h1>Edit your account</h1>
+</div>
 <%= render "form.html", Map.put(assigns, :action, user_path(@conn, :update, @user)) %>
 
 <span><%= link "Back", to: user_path(@conn, :index) %></span>

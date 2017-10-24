@@ -4,7 +4,7 @@
         <div class="card-columns">
             <%= for user <- @users do %>
                 <div class="card">
-                    <img class="card-img-top img-fluid" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Blank_woman_placeholder.svg/2000px-Blank_woman_placeholder.svg.png" alt="bw">
+                    <img src="<%= Microblog.Propic.url({user.propic, user}, :original)%>" alt="Profile Picture" class="card-img-top img-fluid" />
                         <div class="card-body">
                             <h4 class="card-title center-text"><%= user.firstname %> <%= user.lastname%></h4>
                             <p class="card-subtitle mb-1 center-text"><%= link("@" <> user.username, to: user_path(@conn, :show, user)) %></p>

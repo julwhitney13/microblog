@@ -7,9 +7,13 @@ defmodule MicroblogWeb.Endpoint do
   #
   # You should set gzip to true if you are running phoenix.digest
   # when deploying your static files in production.
+
   plug Plug.Static,
-    at: "/", from: :microblog, gzip: false,
-    only: ~w(css fonts images js favicon.ico robots.txt)
+    at: "/", from: :microblog, gzip: (Mix.env == :prod),
+    only: ~w(css fonts images js propics favicon.ico robots.txt)
+
+  plug Plug.Static,
+      at: "/uploads", from: Path.expand("./uploads"), gzip: (Mix.env == :prod)
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.

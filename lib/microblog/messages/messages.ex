@@ -7,7 +7,7 @@ defmodule Microblog.Messages do
   alias Microblog.Repo
 
   alias Microblog.Messages.Post
-
+  import Pandex
   @doc """
   Returns the list of posts.
 
@@ -17,6 +17,11 @@ defmodule Microblog.Messages do
       [%Post{}, ...]
 
   """
+  def convert_md_to_html(string)  do
+      {:ok, output} = markdown_to_html string
+      output
+  end
+
   def list_posts do
     Repo.all(Post, order_by: [desc: :updated_at])
     |> Repo.preload(:user)

@@ -20,7 +20,7 @@ defmodule Microblog.Mixfile do
   def application do
     [
       mod: {Microblog.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:arc_ecto, :logger, :runtime_tools, :pandex]
     ]
   end
 
@@ -34,7 +34,7 @@ defmodule Microblog.Mixfile do
   defp deps do
     [
       {:arc, "~> 0.8.0"},
-      {:arc_ecto, "~> 0.3.1"},
+      {:arc_ecto, "~> 0.7.0"},
       {:phoenix, "~> 1.3.0"},
       {:phoenix_pubsub, "~> 1.0"},
       {:phoenix_ecto, "~> 3.2"},
@@ -46,6 +46,9 @@ defmodule Microblog.Mixfile do
       {:decimal, "~> 1.0"},
       {:distillery, "~> 1.4"},
       {:navigation_history, "~> 0.0"},
+      {:comeonin, "~> 4.0"},
+      {:argon2_elixir, "~> 1.2"},
+      {:pandex, "~> 0.1.0"},
     ]
   end
 

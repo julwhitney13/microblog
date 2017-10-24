@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-md-6">
             <div class="card">
-                <img class="img-fluid img-rounded" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Blank_woman_placeholder.svg/2000px-Blank_woman_placeholder.svg.png" alt="me">
+                <img src="<%= Microblog.Propic.url({@user.propic, @user}, :original)%>" alt="Profile Picture" class="img-fluid img-rounded" />
                 <div class="card-body">
                     <div class="row">
                         <div class=col-md-6><h4 class="card-title"><%= @user.firstname %></h4></div>
@@ -11,22 +11,26 @@
                     <p class="card-text">
                         <%= @user.description %><br><br>
                         <%= if @current_user do %>
-                            <%= if @current_user.id == @user.id do %>
-                                <span><%= link "Edit Profile", to: user_path(@conn, :edit, @user), class: "btn btn-info" %></span>
-                            <% else %>
-                                <%= if Microblog.Accounts.is_following?(@current_user.id, @user.id) do %>
-                                    <%= form_for @conn, relationship_path(@conn, :delete), [method: :delete, as: "relationship"], fn f -> %>
-                                      <%= hidden_input f, :actor_id, value: @current_user.id %>
-                                      <%= hidden_input f, :receiver_id, value: @user.id %>
-                                      <%= submit "unfollow", class: "btn btn-info" %>
+                            <%= cond do %>
+                                <% @current_user.id == @user.id -> %>
+                                    <span><%= link "Edit Profile", to: user_path(@conn, :edit, @user), class: "btn btn-info" %></span>
+                                    <span><%= link "New Post", to: post_path(@conn, :new), class: "btn btn-success m-2" %></span>
+                                <% Microblog.Accounts.is_admin?(@current_user) -> %>
+                                    <span><%= link "Edit User's Profile", to: user_path(@conn, :edit, @user), class: "btn btn-info" %></span>
+                                <% true -> %>
+                                    <%= if Microblog.Accounts.is_following?(@current_user.id, @user.id) do %>
+                                        <%= form_for @conn, relationship_path(@conn, :delete), [method: :delete, as: "relationship"], fn f -> %>
+                                          <%= hidden_input f, :actor_id, value: @current_user.id %>
+                                          <%= hidden_input f, :receiver_id, value: @user.id %>
+                                          <%= submit "unfollow", class: "btn btn-info" %>
+                                        <% end %>
+                                    <% else %>
+                                        <%= form_for @conn, relationship_path(@conn, :create), [as: "relationship"], fn f -> %>
+                                        <%= hidden_input f, :actor_id, value: @current_user.id %>
+                                        <%= hidden_input f, :receiver_id, value: @user.id %>
+                                        <%= submit "follow", class: "btn btn-info" %>
+                                        <% end %>
                                     <% end %>
-                                <% else %>
-                                    <%= form_for @conn, relationship_path(@conn, :create), [as: "relationship"], fn f -> %>
-                                    <%= hidden_input f, :actor_id, value: @current_user.id %>
-                                    <%= hidden_input f, :receiver_id, value: @user.id %>
-                                    <%= submit "follow", class: "btn btn-info" %>
-                                    <% end %>
-                                <% end %>
                             <% end %>
                         <% end %>
                     </p>
